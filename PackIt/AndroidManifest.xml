@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".PackActivity"></activity>
-        <activity android:name=".SetTripActivity"></activity>
+        <activity android:name=".SetTripActivity"
+            		android:label="My Trip"></activity>
         <activity android:name=".TripActivity"></activity>
         <activity android:name=".TripInfoActivity"></activity>
         <activity android:name=".PackingTip"></activity>
