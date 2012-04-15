@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 public class PackItActivity extends Activity {
     /** Called when the activity is first created. */
@@ -14,7 +13,6 @@ public class PackItActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        EditText trip_field = (EditText) findViewById(R.id.trip_name);
         Button continueButton = (Button) findViewById(R.id.continue_button);
         
         continueButton.setOnClickListener(new View.OnClickListener() {

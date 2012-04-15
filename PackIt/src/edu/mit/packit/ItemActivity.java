@@ -1,7 +1,10 @@
 package edu.mit.packit;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class ItemActivity extends Activity {
@@ -26,5 +29,16 @@ public class ItemActivity extends Activity {
 	        
 	        TextView item_text = (TextView) findViewById(R.id.item_text);
 	        item_text.setText(category_type);
+	        
+	        Button edit_button = (Button) findViewById(R.id.edit_button);
+	        
+	        edit_button.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					Intent intent = new Intent(v.getContext(),
+							SetTripActivity.class);
+					startActivity(intent);
+				}
+			});
 	    }
 }
