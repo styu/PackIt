@@ -27,6 +27,7 @@
         <activity android:name=".PackingTip"></activity>
         <activity android:name=".Reminders"></activity>
         <activity android:name=".Weather"></activity>
+        <activity android:name=".ItemActivity"></activity>
     </application>
 
 </manifest>
