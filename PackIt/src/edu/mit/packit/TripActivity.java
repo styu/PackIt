@@ -8,6 +8,11 @@ import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+/**
+ * Activity that contains the Packing and Trip info tabs
+ * @author Steph
+ *
+ */
 public class TripActivity extends TabActivity {
 
 	public static final int PACK = 0;

@@ -3,6 +3,11 @@ package edu.mit.packit;
 import android.app.Activity;
 import android.os.Bundle;
 
+/**
+ * Activity for reminders
+ * @author Steph
+ *
+ */
 public class Reminders extends Activity {
 	
 	 @Override

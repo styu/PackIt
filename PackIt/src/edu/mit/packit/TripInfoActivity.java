@@ -8,6 +8,11 @@ import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+/**
+ * Contains the three tabs for packing tips, weather, and reminders
+ * @author Steph
+ *
+ */
 public class TripInfoActivity extends TabActivity {
 
 	public static final int PACKING_TIP = 0;

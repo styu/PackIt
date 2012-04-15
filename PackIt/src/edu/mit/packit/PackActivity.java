@@ -8,6 +8,11 @@ import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+/**
+ * TabActivity containing the tabs for each of the categories of items the user can pack
+ * @author Steph
+ *
+ */
 public class PackActivity extends TabActivity {
 	
 	public static final int SHIRTS = 0;

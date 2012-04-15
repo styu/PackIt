@@ -6,6 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Main activity, contains a list of past trips and allows users to add new trips.
+ * 
+ * @author Steph
+ *
+ */
 public class PackItActivity extends Activity {
     /** Called when the activity is first created. */
     @Override

@@ -7,6 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Activity that takes care of the editing and removing of items
+ * @author Steph
+ *
+ */
 public class ItemActivity extends Activity {
 
 	 @Override
