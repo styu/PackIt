@@ -20,34 +20,51 @@
         android:inputType="text"
         android:layout_below="@id/destination_title"
         />
+     <TextView 
+        android:id="@+id/mode_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Mode of Transportation:"
+        android:layout_below="@id/destination_field"
+        />
 	<LinearLayout
 	    android:id="@+id/button_row"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_below="@id/destination_field"
+	    android:layout_below="@id/mode_label"
 	    >
 	    <Button
             android:id="@+id/walking_button"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_weight="1"
-            android:text="Walk"
+            android:drawableTop="@drawable/mode_walking"
+            android:drawablePadding="0dp"
         />
         <Button
             android:id="@+id/car_button"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_weight= "1"
-            android:text="Car"
+            android:drawableTop="@drawable/mode_car"
+            android:drawablePadding="0dp"
            />
         <Button
             android:id="@+id/plane_button"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_weight="1"
-            android:text="Airplane"
+            android:drawableTop="@drawable/mode_airplane"
+            android:drawablePadding="0dp"
             />
     </LinearLayout>
+    <TextView
+        android:id="@+id/gender_label"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:text="Gender: "
+        android:layout_below ="@id/button_row"
+        />
     <SeekBar
 	   android:layout_width="fill_parent"
 	   android:layout_height="wrap_content"
@@ -55,7 +72,7 @@
 	   android:paddingRight="10dp"
 	   android:paddingLeft="10dp"
 	   android:id="@+id/seekbar"
-	   android:layout_below="@id/button_row"
+	   android:layout_below="@id/gender_label"
 	   android:max="100"
 	   />
     <TextView
@@ -66,7 +83,7 @@
         android:layout_below="@id/seekbar"
         />
         <TextView android:id="@+id/dash" 
-            android:layout_below="@id/date_label"
+        android:layout_below="@id/date_label"
 		android:layout_width="wrap_content"
 		android:layout_height="35dp" 
 		android:layout_centerHorizontal="true" 
@@ -76,19 +93,21 @@
     	    <EditText 
 			    android:id="@+id/from_date" 
 			    android:layout_width="100dp" 
-			    android:layout_height="35dp"
+			    android:layout_height="40dp"
 			    android:imeOptions="actionDone"
 			    android:inputType="text"
 			    android:layout_below="@id/date_label"
-			    android:layout_toLeftOf="@id/dash"/>
+			    android:layout_toLeftOf="@id/dash"
+			    android:focusable="false"/>
 	        <EditText 
-			    android:id="@+id/from_date" 
+			    android:id="@+id/to_date" 
 			    android:layout_width="100dp" 
-			    android:layout_height="35dp"
+			    android:layout_height="40dp"
 			    android:imeOptions="actionDone"
 			    android:inputType="text"
 			    android:layout_below="@id/date_label"
-			    android:layout_toRightOf="@id/dash"/>
+			    android:layout_toRightOf="@id/dash"
+			    android:focusable="false"/>
          <Button
         android:id="@+id/back_button"
         android:layout_width="wrap_content"

@@ -3,12 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
-
-    <TextView 
-        android:id="@+id/item_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+    
     <Button
         android:id="@+id/edit_button"
         android:layout_width="fill_parent"
@@ -16,5 +11,103 @@
         android:layout_alignParentBottom="true"
         android:text="Edit Trip Information"
         />
-
+    
+    <RelativeLayout
+        android:id="@+id/shelf_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:id="@+id/edit_shelf_button"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Edit"
+            />
+	     <LinearLayout
+	        android:id="@+id/bringitems_view"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_toRightOf="@id/edit_shelf_button"
+	        android:scrollbars="horizontal"
+	        >
+	    </LinearLayout>
+	</RelativeLayout>
+	<RelativeLayout
+	    android:id="@+id/pack_view"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_below="@id/shelf_view"
+	    android:layout_above="@id/edit_button"
+	    >
+	    <ImageView
+	        android:id="@+id/backpack"
+	        android:src="@drawable/backpack"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_horizontal"
+	        android:layout_gravity="center_horizontal"
+	        android:layout_alignParentBottom="true"
+	        />
+	    <LinearLayout
+	        android:id="@+id/packeditems_view"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_above="@id/backpack"
+	        android:layout_below="@id/pack_view"
+	        android:background="#ffffff"
+	        >
+	        
+	    </LinearLayout>
+	    
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/add_view"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_below="@id/shelf_view"
+	    android:layout_above="@id/edit_button"
+	    android:visibility="gone"
+        >
+        <EditText
+            android:id="@+id/new_item_field"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:hint="Need more options?"
+            android:textSize="13sp"
+            android:layout_alignParentBottom="true"
+            />
+        <EditText
+            android:id="@+id/number_item_field"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@id/new_item_field"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:hint="# add"
+            android:textSize="13sp"
+            android:layout_alignParentBottom="true"
+            />
+        <Button
+            android:id="@+id/add_item_button"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@id/number_item_field"
+            android:text="ADD"
+            android:layout_alignParentBottom="true"
+            />
+        
+        <LinearLayout
+	        android:id="@+id/additems_view"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_above="@id/new_item_field"
+	        android:layout_below="@id/pack_view"
+	        android:background="#ffffff"
+	        >
+	        
+	    </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>
