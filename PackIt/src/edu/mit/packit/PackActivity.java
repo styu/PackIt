@@ -93,5 +93,6 @@ public class PackActivity extends TabActivity {
     	spec.setContent(intent);
 
     	tabHost.addTab(spec);
+    	
     }
 }
