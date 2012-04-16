@@ -16,6 +16,7 @@
         android:id="@+id/shelf_view"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/shelf_360x90"
         >
         <Button
             android:id="@+id/edit_shelf_button"
