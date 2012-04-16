@@ -54,9 +54,9 @@ public class TripActivity extends TabActivity {
 
     	TabHost.TabSpec spec = tabHost.newTabSpec(""+type);
 
-    	View tabIndicator = LayoutInflater.from(this).inflate(R.layout.tab_indicator, getTabWidget(), false);
+    	View tabIndicator = LayoutInflater.from(this).inflate(R.layout.tabs_bg, null);
 
-    	TextView label = (TextView) tabIndicator.findViewById(R.id.label);
+    	TextView label = (TextView) tabIndicator.findViewById(R.id.tabsText);
     	label.setText(label_string);
 
     	spec.setIndicator(tabIndicator);
