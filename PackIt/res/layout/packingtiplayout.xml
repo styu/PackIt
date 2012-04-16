@@ -7,6 +7,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Packing tips here yay"
-        />
+    />
+        <!--  android:text="Ready, set, pack! Good packing tips are...
+        \n - Pack lighter material on the bottom so the heavier items compress them 
+        \n - Wrap socks around fragile items to provide cushioning and also save space 
+        \n - Pack all liquid items into see through plastic bags on carry on luggaes!
+        \n - Limiting cartons, when possible, to a maximum weight of 50 pounds to make handling easier.
+        \n - Wrapping items carefully.
+        \n - Providing plenty of cushioning to absorb shock.
+        \n - Using sturdy cartons that close.
+        \n - Making sure cartons are firmly packed and do not rattle, bulge outward or bend inward.
+        \n - Not mixing items from different rooms in the same carton, when possible." -->
+        
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/packingtips"
+      />
 </LinearLayout>

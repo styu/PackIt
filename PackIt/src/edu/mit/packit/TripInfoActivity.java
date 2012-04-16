@@ -30,7 +30,6 @@ public class TripInfoActivity extends TabActivity {
         addTab(tabHost, TripInfoActivity.WEATHER);
         addTab(tabHost, TripInfoActivity.REMINDERS);
         tabHost.setCurrentTab(0);
-        
     }
     
     /**

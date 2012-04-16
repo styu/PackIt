@@ -7,6 +7,18 @@
     <TextView 
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="reminders here listen to these :o"
         />
+        
+    <ImageView
+	      android:layout_width="wrap_content"
+	      android:layout_height="wrap_content"
+	      android:src="@drawable/reminders"
+      />
+      
+        <!--  android:text="Reminders!
+        \n - Remember to pack important electronics, like your cell phone charger!
+        \n - Remember to pack essential toilettries, like a toothbrush and toothpaste.
+        \n - Remember to pack important medicine you may need during your trip.
+        \n - It's cold where you're going, remember to pack multiple jackets. 
+        \n - Remember to bring the correct type of currency!"-->
 </LinearLayout>
