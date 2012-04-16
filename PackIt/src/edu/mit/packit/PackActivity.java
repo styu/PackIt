@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -54,30 +55,38 @@ public class PackActivity extends TabActivity {
     private void addTab(TabHost tabHost, int type) {
     	Intent intent = new Intent(this, ItemActivity.class);
     	String label_string;
-    	
+    	int drawableId;
     	switch (type) {
     	case SHIRTS: intent.putExtra(PackActivity.CATEGORY, PackActivity.SHIRTS);
     	label_string = "Shirts";
+    	drawableId = R.drawable.category_shirt_48x75;
     			break;
     	case JACKETS: intent.putExtra(PackActivity.CATEGORY, PackActivity.JACKETS);
     	label_string = "Jackets";
+    	drawableId = R.drawable.category_outerwear_48x75;
     			break;
     	case PANTS: intent.putExtra(PackActivity.CATEGORY, PackActivity.PANTS);
     	label_string = "Pants";
+    	drawableId = R.drawable.category_pants_48x75;
     		break;
     	case FORMAL_WEAR: intent.putExtra(PackActivity.CATEGORY, PackActivity.FORMAL_WEAR);
     	label_string = "Formal wear";
+    	drawableId = R.drawable.category_formal_48x75;
     		break;
     	case WINTER_GEAR: intent.putExtra(PackActivity.CATEGORY, PackActivity.WINTER_GEAR);
     	label_string = "Winter gear";
+    	drawableId = R.drawable.category_access_48x75;
     		break;
     	case UNDERWEAR: intent.putExtra(PackActivity.CATEGORY, PackActivity.UNDERWEAR);
     	label_string = "Underwear";
+    	drawableId = R.drawable.category_underwear_48x75;
     		break;
     	case MISC: intent.putExtra(PackActivity.CATEGORY, PackActivity.MISC);
     	label_string = "Misc";
+    	drawableId = R.drawable.category_misc_48x75;
     		break;
     	default: intent.putExtra(PackActivity.CATEGORY, PackActivity.SHIRTS);
+    	drawableId = R.drawable.category_underwear_48x75;
     	label_string = "Shirts";
     			break;
     	}
@@ -86,12 +95,15 @@ public class PackActivity extends TabActivity {
 
     	View tabIndicator = LayoutInflater.from(this).inflate(R.layout.tab_indicator, getTabWidget(), false);
 
-    	TextView label = (TextView) tabIndicator.findViewById(R.id.label);
-    	label.setText(label_string);
+    	
+    	ImageView icon = (ImageView) tabIndicator.findViewById(R.id.icon);
+    	icon.setImageResource(drawableId);
+    	icon.setVisibility(View.VISIBLE);
 
     	spec.setIndicator(tabIndicator);
     	spec.setContent(intent);
 
     	tabHost.addTab(spec);
+    	
     }
 }

@@ -306,7 +306,7 @@ public class SetTripActivity extends Activity {
      	editor.putInt(Items.BOXERS_PACKED, 0);
      	editor.putBoolean(Items.BOXERS, true);
      	
-     	editor.putBoolean(Items.LAPTOP, true);
+     	editor.putBoolean(Items.LAPTOP, false);
      	editor.putInt(Items.LAPTOP_TOBRING, 1);
      	editor.putInt(Items.LAPTOP_PACKED, 0);
      	
