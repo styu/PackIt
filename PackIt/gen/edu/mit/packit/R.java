@@ -22,26 +22,27 @@ public final class R {
         public static final int category_pants_48x75=0x7f020005;
         public static final int category_shirt_48x75=0x7f020006;
         public static final int category_underwear_48x75=0x7f020007;
-        public static final int formal_tux=0x7f020008;
-        public static final int ic_launcher=0x7f020009;
-        public static final int jackets_hoodies=0x7f02000a;
-        public static final int misc_bagpipes=0x7f02000b;
-        public static final int misc_laptop=0x7f02000c;
-        public static final int mode_airplane=0x7f02000d;
-        public static final int mode_car=0x7f02000e;
-        public static final int mode_walking=0x7f02000f;
-        public static final int packingtips=0x7f020010;
-        public static final int reminders=0x7f020011;
-        public static final int shelf_360x90=0x7f020012;
-        public static final int shirts_longsleeveshirt=0x7f020013;
-        public static final int shirts_tshirt=0x7f020014;
-        public static final int tab_bg_selected=0x7f020015;
-        public static final int tab_bg_selector=0x7f020016;
-        public static final int tab_bg_unselected=0x7f020017;
-        public static final int tab_text_selector=0x7f020018;
-        public static final int underwear_briefs=0x7f020019;
-        public static final int weather=0x7f02001a;
-        public static final int winter_mittens=0x7f02001b;
+        public static final int edit_btn_48x40=0x7f020008;
+        public static final int formal_tux=0x7f020009;
+        public static final int ic_launcher=0x7f02000a;
+        public static final int jackets_hoodies=0x7f02000b;
+        public static final int misc_bagpipes=0x7f02000c;
+        public static final int misc_laptop=0x7f02000d;
+        public static final int mode_airplane=0x7f02000e;
+        public static final int mode_car=0x7f02000f;
+        public static final int mode_walking=0x7f020010;
+        public static final int packingtips=0x7f020011;
+        public static final int reminders=0x7f020012;
+        public static final int shelf_360x90=0x7f020013;
+        public static final int shirts_longsleeveshirt=0x7f020014;
+        public static final int shirts_tshirt=0x7f020015;
+        public static final int tab_bg_selected=0x7f020016;
+        public static final int tab_bg_selector=0x7f020017;
+        public static final int tab_bg_unselected=0x7f020018;
+        public static final int tab_text_selector=0x7f020019;
+        public static final int underwear_briefs=0x7f02001a;
+        public static final int weather=0x7f02001b;
+        public static final int winter_mittens=0x7f02001c;
     }
     public static final class id {
         public static final int add_item_button=0x7f07000a;
@@ -96,9 +97,10 @@ public final class R {
         public static final int weatherlayout=0x7f03000c;
     }
     public static final class raw {
-        public static final int shelf=0x7f040000;
-        public static final int smallicontemplate=0x7f040001;
-        public static final int smallicontemplate2=0x7f040002;
+        public static final int editbtn=0x7f040000;
+        public static final int shelf=0x7f040001;
+        public static final int smallicontemplate=0x7f040002;
+        public static final int smallicontemplate2=0x7f040003;
     }
     public static final class string {
         public static final int app_name=0x7f060001;

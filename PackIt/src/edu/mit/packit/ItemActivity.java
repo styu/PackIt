@@ -56,7 +56,7 @@ public class ItemActivity extends Activity {
 //	        
 	        Button edit_button = (Button) findViewById(R.id.edit_button);
 	        Button add_button = (Button) findViewById(R.id.add_item_button);
-	        final Button edit_shelf_button = (Button) findViewById(R.id.edit_shelf_button);
+	        final ImageView edit_shelf_button = (ImageView) findViewById(R.id.edit_shelf_button);
 	        
 	        final RelativeLayout packView = (RelativeLayout) findViewById(R.id.pack_view);
 			final RelativeLayout addView = (RelativeLayout) findViewById(R.id.add_view);
@@ -80,12 +80,12 @@ public class ItemActivity extends Activity {
 					if (!isEditMode) {
 						packView.setVisibility(View.GONE);
 						addView.setVisibility(View.VISIBLE);
-						edit_shelf_button.setText("X");
+						//edit_shelf_button.setImageResource(0);
 					}
 					else {
 						addView.setVisibility(View.GONE);
 						packView.setVisibility(View.VISIBLE);
-						edit_shelf_button.setText("Edit");
+						edit_shelf_button.setImageResource(R.drawable.edit_btn_48x40);
 					}
 					editor.putBoolean(ItemActivity.EDIT_MODE, !isEditMode);
 					editor.commit();
