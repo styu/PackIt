@@ -12,13 +12,16 @@
         android:label="@string/app_name" >
         <activity
             android:label="@string/app_name"
-            android:name=".PackItActivity" >
+            android:name=".MainMenuActivity" 
+            android:theme="@style/packItTheme">
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SetTripInfoActivity"
+            android:theme="@style/packItTheme"></activity>
         <activity android:name=".PackActivity"></activity>
         <activity android:name=".SetTripActivity"
             		android:label="My Trip"></activity>
@@ -27,7 +30,7 @@
         <activity android:name=".PackingTip"></activity>
         <activity android:name=".Reminders"></activity>
         <activity android:name=".Weather"></activity>
-        <activity android:name=".ItemActivity"></activity>
+        <activity android:name=".temp.ItemActivity"></activity>
     </application>
 
 </manifest>

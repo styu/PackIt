@@ -1,4 +1,4 @@
-package edu.mit.packit;
+package edu.mit.packit.temp;
 //
 //import java.util.HashMap;
 //
@@ -6,6 +6,8 @@ package edu.mit.packit;
 //import edu.mit.packit.db.TripInfoDataSource;
 //import edu.mit.packit.db.TripSQLiteHelper;
 import java.util.Calendar;
+
+import edu.mit.packit.R;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;

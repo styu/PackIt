@@ -1,5 +1,6 @@
-package edu.mit.packit;
+package edu.mit.packit.temp;
 
+import edu.mit.packit.R;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,7 +52,7 @@ public class TripInfoActivity extends TabActivity {
     	case REMINDERS: intent = new Intent(this, Reminders.class);
     	label_string = "Reminders and stuff";
     		break;
-    	default: intent = new Intent(this, PackActivity.class); 
+    	default: intent = new Intent(this, PackTempActivity.class); 
     	label_string = "Packing tips";
     			break;
     	}

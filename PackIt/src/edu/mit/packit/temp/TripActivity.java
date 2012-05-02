@@ -1,5 +1,6 @@
-package edu.mit.packit;
+package edu.mit.packit.temp;
 
+import edu.mit.packit.R;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,13 +42,13 @@ public class TripActivity extends TabActivity {
     	Intent intent;
     	String label_string;
     	switch (type) {
-    	case PACK: intent = new Intent(this, PackActivity.class); 
+    	case PACK: intent = new Intent(this, PackTempActivity.class); 
     	label_string = "Packing";
     			break;
     	case TRIP_INFO: intent = new Intent(this, TripInfoActivity.class); 
     	label_string = "Trip info";
     			break;
-    	default: intent = new Intent(this, PackActivity.class); 
+    	default: intent = new Intent(this, PackTempActivity.class); 
     	label_string = "Packing";
     			break;
     	}

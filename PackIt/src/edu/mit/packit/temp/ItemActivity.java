@@ -1,5 +1,6 @@
-package edu.mit.packit;
+package edu.mit.packit.temp;
 
+import edu.mit.packit.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -31,7 +32,7 @@ public class ItemActivity extends Activity {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.itemlayout);
 	        
-	        int type = this.getIntent().getIntExtra(PackActivity.CATEGORY, PackActivity.SHIRTS);
+	        int type = this.getIntent().getIntExtra(PackTempActivity.CATEGORY, PackTempActivity.SHIRTS);
 	        
 	        SharedPreferences editToggle = getPreferences(MODE_PRIVATE);
 			SharedPreferences.Editor editor = editToggle.edit();
@@ -80,7 +81,7 @@ public class ItemActivity extends Activity {
 					if (!isEditMode) {
 						packView.setVisibility(View.GONE);
 						addView.setVisibility(View.VISIBLE);
-						//edit_shelf_button.setImageResource(0);
+						edit_shelf_button.setImageResource(R.drawable.exit_btn_25x40);
 					}
 					else {
 						addView.setVisibility(View.GONE);
@@ -109,7 +110,7 @@ public class ItemActivity extends Activity {
 			});
 	    }
 	 public void onResume(Bundle savedInstanceState) {
-		 int type = this.getIntent().getIntExtra(PackActivity.CATEGORY, PackActivity.SHIRTS);
+		 int type = this.getIntent().getIntExtra(PackTempActivity.CATEGORY, PackTempActivity.SHIRTS);
 		 setContent(type);
 		 Log.i("ItemActivity", "here");
 	 }
@@ -361,7 +362,7 @@ public class ItemActivity extends Activity {
     		}
 		 }
 	        switch (type) {
-	        case PackActivity.SHIRTS: 
+	        case PackTempActivity.SHIRTS: 
 	        	if (items.getBoolean(Items.LONG_SHIRT, false)) {
 	        		if (items.getInt(Items.LONG_SHIRT_TOBRING, 0) > 0 ) {
 	        			ImageView image = (ImageView) long_shirt_bring.findViewById(R.id.item_image);
@@ -436,7 +437,7 @@ public class ItemActivity extends Activity {
 	        		}
 	        	}
 	        	break;
-	        case PackActivity.JACKETS: 
+	        case PackTempActivity.JACKETS: 
 	        	if (items.getBoolean(Items.HOODY, false)) {
 	        		if (items.getInt(Items.HOODY_TOBRING, 0) > 0 ) {
 	        			ImageView image = (ImageView) hoody_bring.findViewById(R.id.item_image);
@@ -475,8 +476,8 @@ public class ItemActivity extends Activity {
 	        		}
 	        	}
 	        	break;
-	        case PackActivity.FORMAL_WEAR:    	break;
-	        case PackActivity.WINTER_GEAR:  
+	        case PackTempActivity.FORMAL_WEAR:    	break;
+	        case PackTempActivity.WINTER_GEAR:  
 	        	if (items.getBoolean(Items.MITTENS, false)) {
 	        		if (items.getInt(Items.MITTENS_TOBRING, 0) > 0 ) {
 	        			ImageView image = (ImageView) mittens_bring.findViewById(R.id.item_image);
@@ -515,9 +516,9 @@ public class ItemActivity extends Activity {
 	        		}
 	        	}
 	        	break;
-	        case PackActivity.PANTS: break;
-	        case PackActivity.UNDERWEAR:  break;
-	        case PackActivity.MISC:  
+	        case PackTempActivity.PANTS: break;
+	        case PackTempActivity.UNDERWEAR:  break;
+	        case PackTempActivity.MISC:  
 	        	if (items.getBoolean(Items.LAPTOP, false)) {
 	        		if (items.getInt(Items.LAPTOP_TOBRING, 0) > 0 ) {
 	        			ImageView image = (ImageView) laptop_bring.findViewById(R.id.item_image);

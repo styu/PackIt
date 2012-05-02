@@ -1,4 +1,4 @@
-package edu.mit.packit;
+package edu.mit.packit.temp;
 
 /**
  * Temporary class to hold constants that simulate backend data

@@ -1,7 +1,7 @@
 package edu.mit.packit.db;
 import java.util.HashMap;
 
-import edu.mit.packit.PackItActivity;
+import edu.mit.packit.temp.PackItActivity;
 
 import android.content.ContentValues;
 import android.content.Context;
