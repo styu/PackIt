@@ -9,13 +9,49 @@
 		android:layout_height="fill_parent"
         >
         <!-- Action bar  -->
-	    <RelativeLayout
-		        android:background="@drawable/action_bar"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:maxHeight="50dp"
-		        >
-		</RelativeLayout>
+    <RelativeLayout
+	        android:background="@drawable/action_bar"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:maxHeight="50dp"
+	        >
+	        <ImageView
+	            android:id="@+id/settings_button"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_centerVertical="true"
+	            android:src="@drawable/topbaricon_settings"
+	            android:layout_alignParentRight="true"
+	            android:layout_marginRight="6dp"
+	            />
+	        <ImageView
+	            android:id="@+id/packing_button"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_centerVertical="true"
+	            android:src="@drawable/topbaricon_packing"
+	            android:layout_toLeftOf="@id/settings_button"
+	            android:layout_marginRight="6dp"
+	            />
+	        <ImageView
+	            android:id="@+id/info_button"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_centerVertical="true"
+	            android:src="@drawable/topbaricon_info"
+	            android:layout_toLeftOf="@id/packing_button"
+	            android:layout_marginRight="6dp"
+	            />
+	         <ImageView
+	            android:id="@+id/home_button"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_centerVertical="true"
+	            android:src="@drawable/topbaricon_home"
+	            android:layout_toLeftOf="@id/info_button"
+	            android:layout_marginRight="6dp"
+	            />
+	</RelativeLayout>
         <TabWidget
             android:background="@null"
             android:id="@android:id/tabs"

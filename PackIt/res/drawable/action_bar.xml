@@ -5,8 +5,8 @@
 	    xmlns:android="http://schemas.android.com/apk/res/android"
 	    android:shape="rectangle" >
 	     <gradient
-	         android:startColor="#2B7CD3"
-	         android:endColor="#094585"
+	         android:startColor="#119baa"
+	         android:endColor="#0d717b"
 	         android:angle="270" />
 		<size
 	        android:height="50dp"/>

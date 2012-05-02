@@ -26,14 +26,19 @@
             android:theme="@style/packItTheme"></activity>
         <activity android:name=".PackActivity"
             android:theme="@style/packItTheme"></activity>
+         <activity android:name=".ItemActivity"
+            android:theme="@style/packItTheme"></activity>
+        <activity android:name=".SettingsActivity"
+            android:theme="@style/packItTheme"></activity>
+        <activity android:name=".TripInfoActivity"
+            android:theme="@style/packItTheme"></activity>  
         <activity android:name=".SetTripActivity"
             		android:label="My Trip"></activity>
         <activity android:name=".TripActivity"></activity>
-        <activity android:name=".TripInfoActivity"></activity>
         <activity android:name=".PackingTip"></activity>
         <activity android:name=".Reminders"></activity>
         <activity android:name=".Weather"></activity>
-        <activity android:name=".temp.ItemActivity"></activity>
+        <activity android:name=".temp.ItemTempActivity"></activity>
     </application>
 
 </manifest>

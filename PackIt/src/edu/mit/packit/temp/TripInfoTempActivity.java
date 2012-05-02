@@ -1,3 +1,4 @@
+package edu.mit.packit.temp;
 //package edu.mit.packit.temp;
 //
 //import edu.mit.packit.R;
@@ -10,26 +11,27 @@
 //import android.widget.TextView;
 //
 ///**
-// * Activity that contains the Packing and Trip info tabs
+// * Contains the three tabs for packing tips, weather, and reminders
 // * @author Steph
 // *
 // */
-//public class TripActivity extends TabActivity {
+//public class TripInfoActivity extends TabActivity {
 //
-//	public static final int PACK = 0;
-//	public static final int TRIP_INFO = 1;
+//	public static final int PACKING_TIP = 0;
+//	public static final int WEATHER = 1;
+//	public static final int REMINDERS = 2;
 //	@Override
 //    public void onCreate(Bundle savedInstanceState) {
 //    	super.onCreate(savedInstanceState);
 //
-//        setContentView(R.layout.trip_tablayout);
+//        setContentView(R.layout.tripinfo_tablayout);
 //    	
 //        TabHost tabHost = getTabHost();  // The activity TabHost
 //        
-//        addTab(tabHost, TripActivity.PACK);
-//        addTab(tabHost, TripActivity.TRIP_INFO);
+//        addTab(tabHost, TripInfoActivity.PACKING_TIP);
+//        addTab(tabHost, TripInfoActivity.WEATHER);
+//        addTab(tabHost, TripInfoActivity.REMINDERS);
 //        tabHost.setCurrentTab(0);
-//        
 //    }
 //    
 //    /**
@@ -42,14 +44,17 @@
 //    	Intent intent;
 //    	String label_string;
 //    	switch (type) {
-//    	case PACK: intent = new Intent(this, PackTempActivity.class); 
-//    	label_string = "Packing";
+//    	case PACKING_TIP: intent = new Intent(this, PackingTip.class); 
+//    	label_string = "Packing tips";
 //    			break;
-//    	case TRIP_INFO: intent = new Intent(this, TripInfoActivity.class); 
-//    	label_string = "Trip info";
+//    	case WEATHER: intent = new Intent(this, Weather.class); 
+//    	label_string = "Weather";
 //    			break;
+//    	case REMINDERS: intent = new Intent(this, Reminders.class);
+//    	label_string = "Reminders and stuff";
+//    		break;
 //    	default: intent = new Intent(this, PackTempActivity.class); 
-//    	label_string = "Packing";
+//    	label_string = "Packing tips";
 //    			break;
 //    	}
 //
