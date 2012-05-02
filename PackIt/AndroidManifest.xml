@@ -22,7 +22,8 @@
         </activity>
         <activity android:name=".SetTripInfoActivity"
             android:theme="@style/packItTheme"></activity>
-        <activity android:name=".PackActivity"></activity>
+        <activity android:name=".PackActivity"
+            android:theme="@style/packItTheme"></activity>
         <activity android:name=".SetTripActivity"
             		android:label="My Trip"></activity>
         <activity android:name=".TripActivity"></activity>
