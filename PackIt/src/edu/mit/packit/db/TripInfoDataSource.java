@@ -1,7 +1,7 @@
 package edu.mit.packit.db;
 import java.util.HashMap;
 
-import edu.mit.packit.temp.PackItActivity;
+import edu.mit.packit.temp.PackItTempActivity;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -25,8 +25,8 @@ public class TripInfoDataSource {
 			TripSQLiteHelper.TO_DATE };
 	
 	public static void set(Context context) {
-		if (PackItActivity.datasource == null) {
-			PackItActivity.datasource = new TripInfoDataSource(context.getApplicationContext());
+		if (PackItTempActivity.datasource == null) {
+			PackItTempActivity.datasource = new TripInfoDataSource(context.getApplicationContext());
 		}
 		
 	}

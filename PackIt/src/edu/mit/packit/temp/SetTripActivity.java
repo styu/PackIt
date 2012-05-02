@@ -90,7 +90,7 @@ public class SetTripActivity extends Activity {
 	        
 	        
 	        //disabled for now
-	        if (getIntent().hasExtra(PackItActivity.ACTIVITY_NAME) && getIntent().getStringExtra(PackItActivity.ACTIVITY_NAME).equals(PackItActivity.PACKIT_ACTIVITY)) {
+	        if (getIntent().hasExtra(PackItTempActivity.ACTIVITY_NAME) && getIntent().getStringExtra(PackItTempActivity.ACTIVITY_NAME).equals(PackItTempActivity.PACKIT_ACTIVITY)) {
 	        	//Log.i("SetTripActivity", "HERE");
 	        	//PackItActivity.datasource.deleteAllTrips();
 	        }
@@ -123,7 +123,7 @@ public class SetTripActivity extends Activity {
 				
 				public void onClick(View v) {
 					Intent intent = new Intent(v.getContext(),
-							PackItActivity.class);
+							PackItTempActivity.class);
 					startActivity(intent);
 				}
 			});
@@ -135,7 +135,7 @@ public class SetTripActivity extends Activity {
 							TripActivity.class);
 					
 					//set initial data...for prototyping purposes
-					 if (getIntent().hasExtra(PackItActivity.ACTIVITY_NAME) && getIntent().getStringExtra(PackItActivity.ACTIVITY_NAME).equals(PackItActivity.PACKIT_ACTIVITY)) {
+					 if (getIntent().hasExtra(PackItTempActivity.ACTIVITY_NAME) && getIntent().getStringExtra(PackItTempActivity.ACTIVITY_NAME).equals(PackItTempActivity.PACKIT_ACTIVITY)) {
 				        	setItems();
 				     }
 //					EditText destination_field = (EditText) findViewById(R.id.destination_field);
