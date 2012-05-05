@@ -35,16 +35,16 @@ public class SetTripInfoActivity extends Activity {
         PackItActivity.datasource.open();
         
         final String trip_name = getIntent().getStringExtra(Info.TRIP_NAME);
-        SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
-        SharedPreferences.Editor prefs_editor = prefs.edit();
-        prefs_editor.putString(TripSQLiteHelper.TRIP_NAME, trip_name);
-        prefs_editor.commit();
+        
         Button go_button = (Button)findViewById(R.id.go_button);
         Button back_button = (Button) findViewById(R.id.back_button);
         go_button.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				
+				SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
+		        SharedPreferences.Editor prefs_editor = prefs.edit();
+		        prefs_editor.putString(TripSQLiteHelper.TRIP_NAME, trip_name);
+		        prefs_editor.commit();
 				HashMap<String, String> details = new HashMap<String, String>();
 				details.put(TripSQLiteHelper.TRIP_NAME, trip_name);
 				
