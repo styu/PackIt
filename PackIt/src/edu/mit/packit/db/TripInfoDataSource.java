@@ -79,7 +79,7 @@ public class TripInfoDataSource {
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			TripDetails detail = cursorToComment(cursor);
-			trip_names.add(detail.getTripName());
+			trip_names.add(detail.getTripName().toUpperCase());
 			cursor.moveToNext();
 		}
 		// Make sure to close the cursor
