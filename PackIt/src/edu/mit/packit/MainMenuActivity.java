@@ -1,18 +1,32 @@
 package edu.mit.packit;
 
+import java.util.List;
+
+import edu.mit.packit.db.TripDetails;
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 
-public class MainMenuActivity extends Activity {
+public class MainMenuActivity extends ListActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainmenulayout);
+        
+        PackItActivity.datasource.open();
+        List<String> trips = PackItActivity.datasource.getAllTripNames();
+        setListAdapter(new ArrayAdapter<String>(this, R.layout.trip_item, trips));
+        
+        
+        ListView lv = getListView();
+        lv.setTextFilterEnabled(true);
         
         Button continue_button = (Button) findViewById(R.id.continue_button);
         ImageView settings_button = (ImageView) findViewById(R.id.settings_button);
@@ -58,5 +72,15 @@ public class MainMenuActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+	}
+	
+	protected void onResume() {
+		PackItActivity.datasource.open();
+		super.onResume();
+	}
+	
+	protected void onPause() {
+		PackItActivity.datasource.close();
+		super.onPause();
 	}
 }

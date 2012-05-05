@@ -1,5 +1,7 @@
 package edu.mit.packit.db;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import edu.mit.packit.PackItActivity;
 
@@ -68,22 +70,38 @@ public class TripInfoDataSource {
 		dbHelper.deleteAllTrips(database);
 	}
 	
-	public TripDetails getAllTrips() {
-		Cursor cursor = database.query(TripSQLiteHelper.TABLE_TRIPINFO, tripinfo_cols, null, null, null, null, null);
-		
-		if (!cursor.moveToFirst()) {
-			TripDetails details = new TripDetails();
-			details.setId(cursor.getLong(0));
-			details.setTripName(cursor.getString(1));
-			details.setLocation(cursor.getString(2));
-			details.setTransportation(cursor.getString(3));
-			details.setFromDate(cursor.getString(4));
-			details.setToDate(cursor.getString(5));
-			
-			return details;
+	public List<String> getAllTripNames() {
+		List<String> trip_names = new ArrayList<String>();
+
+		Cursor cursor = database.query(TripSQLiteHelper.TABLE_TRIPINFO,
+				tripinfo_cols, null, null, null, null, null);
+
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			TripDetails detail = cursorToComment(cursor);
+			trip_names.add(detail.getTripName());
+			cursor.moveToNext();
 		}
-		
-		return null;
+		// Make sure to close the cursor
+		cursor.close();
+		return trip_names;
+	}
+	
+	public List<TripDetails> getAllTrips() {
+		List<TripDetails> details = new ArrayList<TripDetails>();
+
+		Cursor cursor = database.query(TripSQLiteHelper.TABLE_TRIPINFO,
+				tripinfo_cols, null, null, null, null, null);
+
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			TripDetails detail = cursorToComment(cursor);
+			details.add(detail);
+			cursor.moveToNext();
+		}
+		// Make sure to close the cursor
+		cursor.close();
+		return details;
 	}
 	public TripDetails getTrip(String trip_name) {
 		Cursor cursor = database.query(TripSQLiteHelper.TABLE_TRIPINFO, tripinfo_cols, TripSQLiteHelper.TRIP_NAME + " = \'" + trip_name +"\'", null, null, null, null);
@@ -101,5 +119,16 @@ public class TripInfoDataSource {
 		}
 		
 		return null;
+	}
+	
+	private TripDetails cursorToComment(Cursor cursor) {
+		TripDetails details = new TripDetails();
+		details.setId(cursor.getLong(0));
+		details.setTripName(cursor.getString(1));
+		details.setLocation(cursor.getString(2));
+		details.setTransportation(cursor.getString(3));
+		details.setFromDate(cursor.getString(4));
+		details.setToDate(cursor.getString(5));
+		return details;
 	}
 }

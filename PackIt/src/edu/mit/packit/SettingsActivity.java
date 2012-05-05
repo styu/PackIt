@@ -1,6 +1,7 @@
 package edu.mit.packit;
 
 import edu.mit.packit.db.TripDetails;
+import edu.mit.packit.db.TripSQLiteHelper;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,13 +22,13 @@ public class SettingsActivity extends Activity {
         
         TextView test_text = (TextView) findViewById(R.id.info);
         
-        SharedPreferences prefs = getSharedPreferences("trip_name", MODE_PRIVATE);
-        String trip_name = prefs.getString("name", "");
+        SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
+        String trip_name = prefs.getString(TripSQLiteHelper.TRIP_NAME, "");
         
         PackItActivity.datasource.open();
         if (!trip_name.equals("")) {
         	 TripDetails trip = PackItActivity.datasource.getTrip(trip_name);
-        	 test_text.setText(trip.getTripName() + " " + trip.getLocation());
+        	 test_text.setText(trip.getTripName() + " " + trip.getLocation() + " " + trip.getFromDate() + " " + trip.getToDate());
         }
        
         home_button.setOnClickListener(new View.OnClickListener() {
