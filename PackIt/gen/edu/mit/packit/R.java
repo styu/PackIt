@@ -101,22 +101,24 @@ public final class R {
         public static final int walking_button=0x7f080018;
     }
     public static final class layout {
-        public static final int itemlayout=0x7f030000;
-        public static final int mainmenulayout=0x7f030001;
-        public static final int objectlayout=0x7f030002;
-        public static final int pack_tablayout=0x7f030003;
-        public static final int packingtiplayout=0x7f030004;
-        public static final int packlayout=0x7f030005;
-        public static final int reminderslayout=0x7f030006;
-        public static final int settingslayout=0x7f030007;
-        public static final int settripinfolayout=0x7f030008;
-        public static final int startpagelayout=0x7f030009;
-        public static final int tab_indicator=0x7f03000a;
-        public static final int tabs_bg=0x7f03000b;
-        public static final int trip_tablayout=0x7f03000c;
-        public static final int tripinfo_tablayout=0x7f03000d;
-        public static final int tripinfolayout=0x7f03000e;
-        public static final int weatherlayout=0x7f03000f;
+        public static final int borderbox=0x7f030000;
+        public static final int itemlayout=0x7f030001;
+        public static final int mainmenulayout=0x7f030002;
+        public static final int objectlayout=0x7f030003;
+        public static final int pack_tablayout=0x7f030004;
+        public static final int packingtiplayout=0x7f030005;
+        public static final int packlayout=0x7f030006;
+        public static final int reminderslayout=0x7f030007;
+        public static final int settingslayout=0x7f030008;
+        public static final int settripinfolayout=0x7f030009;
+        public static final int startpagelayout=0x7f03000a;
+        public static final int tab_indicator=0x7f03000b;
+        public static final int tabs_bg=0x7f03000c;
+        public static final int trip_item=0x7f03000d;
+        public static final int trip_tablayout=0x7f03000e;
+        public static final int tripinfo_tablayout=0x7f03000f;
+        public static final int tripinfolayout=0x7f030010;
+        public static final int weatherlayout=0x7f030011;
     }
     public static final class raw {
         public static final int backpackscreen=0x7f040000;
