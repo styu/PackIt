@@ -17,7 +17,7 @@
 				android:layout_centerVertical="true"
 				android:src="@drawable/topbar_packitlogo"
 				android:layout_alignParentLeft="true"
-				android:layout_marginLeft="15dp"
+				android:layout_marginLeft="10dp"
 		
 			/>
 	        <ImageView

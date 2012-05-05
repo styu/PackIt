@@ -24,7 +24,6 @@ public class MainMenuActivity extends ListActivity {
         List<String> trips = PackItActivity.datasource.getAllTripNames();
         setListAdapter(new ArrayAdapter<String>(this, R.layout.trip_item, trips));
         
-        
         ListView lv = getListView();
         lv.setTextFilterEnabled(true);
         
