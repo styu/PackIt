@@ -112,8 +112,9 @@ public class TripInfoDataSource {
 			details.setTripName(cursor.getString(1));
 			details.setLocation(cursor.getString(2));
 			details.setTransportation(cursor.getString(3));
-			details.setFromDate(cursor.getString(4));
-			details.setToDate(cursor.getString(5));
+			details.setGender(cursor.getString(4));
+			details.setFromDate(cursor.getString(5));
+			details.setToDate(cursor.getString(6));
 			
 			return details;
 		}
