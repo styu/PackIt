@@ -39,11 +39,17 @@ public class SetTripInfoActivity extends Activity {
 				EditText destination_field = (EditText) ((Activity) v.getContext()).findViewById(R.id.destination_field);
 				details.put(TripSQLiteHelper.LOCATION, destination_field.getText().toString());
 				
+				// TODO add calendar widget to get date
+				
 				EditText from_date = (EditText) ((Activity) v.getContext()).findViewById(R.id.from_date);
 				details.put(TripSQLiteHelper.FROM_DATE, from_date.getText().toString());
 				
+				// TODO add calendar widget to get date
+				
 				EditText to_date = (EditText) ((Activity) v.getContext()).findViewById(R.id.to_date);
 				details.put(TripSQLiteHelper.TO_DATE, to_date.getText().toString());
+				
+				// TODO add actual values
 				details.put(TripSQLiteHelper.GENDER, "male");
 				details.put(TripSQLiteHelper.TRANSPORTATION, "car");
 				PackItActivity.datasource.createTrip(details);

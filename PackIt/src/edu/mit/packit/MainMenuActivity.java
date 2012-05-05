@@ -19,6 +19,8 @@ public class MainMenuActivity extends Activity {
         ImageView pack_button = (ImageView) findViewById(R.id.packing_button);
         ImageView trip_button = (ImageView) findViewById(R.id.info_button);
         
+        // TODO add list of past trips
+        
         continue_button.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
