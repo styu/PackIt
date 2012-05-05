@@ -2,12 +2,12 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="60dp"
-    android:textSize="25sp" 
-    android:background="@layout/borderbox"
+    android:textSize="17sp" 
+    android:textStyle="bold"
+    android:background="#a2c8cc"
     android:layout_marginBottom="10dp"
     android:layout_marginTop="10dp"
     android:textColor="#07525a"
     android:gravity="center_vertical|center_horizontal"
-    android:inputType="textCapCharacters"
     >
 </TextView>	

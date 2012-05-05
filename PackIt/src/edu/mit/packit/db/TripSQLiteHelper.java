@@ -11,6 +11,7 @@ public class TripSQLiteHelper extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 1;
 	
 	public static final String TABLE_TRIPINFO = "tripinfo";
+	public static final String TABLE_ITEMS = "items";
 	public static final String COLUMN_ID = "_id";
 	
 	//trip info table fields
