@@ -15,6 +15,7 @@ public final class R {
         public static final int white=0x7f050001;
     }
     public static final class drawable {
+<<<<<<< HEAD
         public static final int action_bar=0x7f020000;
         public static final int backpack=0x7f020001;
         public static final int backpack_splashscreen=0x7f020002;
@@ -45,10 +46,43 @@ public final class R {
         public static final int jackets_hoodies=0x7f02001b;
         public static final int misc_bagpipes=0x7f02001c;
         public static final int misc_laptop=0x7f02001d;
+=======
+        public static final int accessories_mittens=0x7f020000;
+        public static final int accessories_rainboots=0x7f020001;
+        public static final int accessories_scarf=0x7f020002;
+        public static final int accessories_socks=0x7f020003;
+        public static final int action_bar=0x7f020004;
+        public static final int backpack=0x7f020005;
+        public static final int backpack_splashscreen=0x7f020006;
+        public static final int category_access_48x75=0x7f020007;
+        public static final int category_formal_48x75=0x7f020008;
+        public static final int category_misc_48x75=0x7f020009;
+        public static final int category_outerwear_48x75=0x7f02000a;
+        public static final int category_pants_48x75=0x7f02000b;
+        public static final int category_shirt_48x75=0x7f02000c;
+        public static final int category_underwear_48x75=0x7f02000d;
+        public static final int edit_btn_48x40=0x7f02000e;
+        public static final int exit_btn_25x40=0x7f02000f;
+        public static final int formal_tux=0x7f020010;
+        public static final int ic_launcher=0x7f020011;
+        public static final int ic_launcher_old=0x7f020012;
+        public static final int jackets_coat_female=0x7f020013;
+        public static final int jackets_coat_male=0x7f020014;
+        public static final int jackets_hoodies=0x7f020015;
+        public static final int misc_bagpipes=0x7f020016;
+        public static final int misc_comb_female=0x7f020017;
+        public static final int misc_comb_male=0x7f020018;
+        public static final int misc_laptop=0x7f020019;
+        public static final int misc_phone=0x7f02001a;
+        public static final int misc_toothbrush=0x7f02001b;
+        public static final int misc_toothpaste=0x7f02001c;
+        public static final int misc_umbrella=0x7f02001d;
+>>>>>>> 459b14aab6b36838240a06abb6e605b94ee644ef
         public static final int mode_airplane=0x7f02001e;
         public static final int mode_car=0x7f02001f;
         public static final int mode_walking=0x7f020020;
         public static final int packingtips=0x7f020021;
+<<<<<<< HEAD
         public static final int reminders=0x7f020022;
         public static final int shelf_360x90=0x7f020023;
         public static final int shirts_longsleeveshirt=0x7f020024;
@@ -67,6 +101,30 @@ public final class R {
         public static final int underwear_briefs=0x7f020031;
         public static final int weather=0x7f020032;
         public static final int winter_mittens=0x7f020033;
+=======
+        public static final int pants_jeans_female=0x7f020022;
+        public static final int pants_jeans_male=0x7f020023;
+        public static final int pants_ski_pants=0x7f020024;
+        public static final int reminders=0x7f020025;
+        public static final int shelf_360x90=0x7f020026;
+        public static final int shirts_longsleeveshirt=0x7f020027;
+        public static final int shirts_tshirt=0x7f020028;
+        public static final int splashscreen_button=0x7f020029;
+        public static final int splashscreen_main=0x7f02002a;
+        public static final int tab_bg_selected=0x7f02002b;
+        public static final int tab_bg_selector=0x7f02002c;
+        public static final int tab_bg_unselected=0x7f02002d;
+        public static final int tab_text_selector=0x7f02002e;
+        public static final int topbar_packitlogo=0x7f02002f;
+        public static final int topbaricon_home=0x7f020030;
+        public static final int topbaricon_info=0x7f020031;
+        public static final int topbaricon_packing=0x7f020032;
+        public static final int topbaricon_settings=0x7f020033;
+        public static final int undergarment_bra=0x7f020034;
+        public static final int undergarment_underwear_female=0x7f020035;
+        public static final int undergarment_underwear_male=0x7f020036;
+        public static final int weather=0x7f020037;
+>>>>>>> 459b14aab6b36838240a06abb6e605b94ee644ef
     }
     public static final class id {
         public static final int add_item_button=0x7f080009;
