@@ -61,14 +61,17 @@ public class SetTripInfoActivity extends Activity {
 				EditText to_date = (EditText) ((Activity) v.getContext()).findViewById(R.id.to_date);
 				details.put(TripSQLiteHelper.TO_DATE, to_date.getText().toString());
 				
-				// TODO add actual values
-				details.put(TripSQLiteHelper.GENDER, "male");
-				details.put(TripSQLiteHelper.TRANSPORTATION, "car");
+				String gender = prefs.getString(TripSQLiteHelper.GENDER, "");
+				details.put(TripSQLiteHelper.GENDER, gender);
+				
+				String transportation = prefs.getString(TripSQLiteHelper.TRANSPORTATION, "");
+				details.put(TripSQLiteHelper.TRANSPORTATION, transportation);
 				PackItActivity.datasource.createTrip(details);
 				
 				Intent intent = new Intent(v.getContext(),
 							PackActivity.class);
 				startActivity(intent);
+				finish();
 			}
 		});
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +84,151 @@ public class SetTripInfoActivity extends Activity {
 			}
 		});
         
+        final Button walk_button = (Button) findViewById(R.id.walking_button);
+        final Button car_button = (Button) findViewById(R.id.car_button);
+        final Button fly_button = (Button) findViewById(R.id.plane_button);
+        
+        final Button male_button = (Button) findViewById(R.id.male);
+        final Button female_button = (Button) findViewById(R.id.female);
+        
+        SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
+        SharedPreferences.Editor prefs_editor = prefs.edit();
+        prefs_editor.putString(TripSQLiteHelper.TRANSPORTATION, null);
+        prefs_editor.putString(TripSQLiteHelper.GENDER, null);
+        prefs_editor.commit();
+        
+        walk_button.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
+		        SharedPreferences.Editor prefs_editor = prefs.edit();
+		        String cur_trans = prefs.getString(TripSQLiteHelper.TRANSPORTATION, null);
+		        if (cur_trans == null) {
+		        	walk_button.setBackgroundResource(R.drawable.ct_ground);
+		        	prefs_editor.putString(TripSQLiteHelper.TRANSPORTATION, Info.WALK);
+		        }
+		        else if (cur_trans.equals(Info.WALK)) {
+		        	walk_button.setBackgroundResource(R.drawable.ct_ground_o);
+		        	prefs_editor.putString(TripSQLiteHelper.TRANSPORTATION, null);
+		        }
+		        else if (cur_trans.equals(Info.CAR)) {
+		        	walk_button.setBackgroundResource(R.drawable.ct_ground);
+		        	car_button.setBackgroundResource(R.drawable.ct_road_o);
+		        	prefs_editor.putString(TripSQLiteHelper.TRANSPORTATION, Info.WALK);
+		        }
+		        else if (cur_trans.equals(Info.PLANE)) {
+		        	walk_button.setBackgroundResource(R.drawable.ct_ground);
+		        	fly_button.setBackgroundResource(R.drawable.ct_air_o);
+		        	prefs_editor.putString(TripSQLiteHelper.TRANSPORTATION, Info.WALK);
+		        }
+		        prefs_editor.commit();
+			}
+		});
+        
+        car_button.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
+		        SharedPreferences.Editor prefs_editor = prefs.edit();
+		        String cur_trans = prefs.getString(TripSQLiteHelper.TRANSPORTATION, null);
+		        if (cur_trans == null) {
+		        	car_button.setBackgroundResource(R.drawable.ct_road);
+		        	prefs_editor.putString(TripSQLiteHelper.TRANSPORTATION, Info.CAR);
+		        }
+		        else if (cur_trans.equals(Info.WALK)) {
+		        	car_button.setBackgroundResource(R.drawable.ct_road);
+		        	walk_button.setBackgroundResource(R.drawable.ct_ground_o);
+		        	prefs_editor.putString(TripSQLiteHelper.TRANSPORTATION, Info.CAR);
+		        }
+		        else if (cur_trans.equals(Info.CAR)) {
+		        	car_button.setBackgroundResource(R.drawable.ct_road_o);
+		        	prefs_editor.putString(TripSQLiteHelper.TRANSPORTATION, null);
+		        }
+		        else if (cur_trans.equals(Info.PLANE)) {
+		        	car_button.setBackgroundResource(R.drawable.ct_road);
+		        	fly_button.setBackgroundResource(R.drawable.ct_air_o);
+		        	prefs_editor.putString(TripSQLiteHelper.TRANSPORTATION, Info.CAR);
+		        }
+		        prefs_editor.commit();
+			}
+		});
+        
+        fly_button.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
+		        SharedPreferences.Editor prefs_editor = prefs.edit();
+		        String cur_trans = prefs.getString(TripSQLiteHelper.TRANSPORTATION, null);
+		        if (cur_trans == null) {
+		        	fly_button.setBackgroundResource(R.drawable.ct_air);
+		        	prefs_editor.putString(TripSQLiteHelper.TRANSPORTATION, Info.PLANE);
+		        }
+		        else if (cur_trans.equals(Info.WALK)) {
+		        	fly_button.setBackgroundResource(R.drawable.ct_air);
+		        	walk_button.setBackgroundResource(R.drawable.ct_ground_o);
+		        	prefs_editor.putString(TripSQLiteHelper.TRANSPORTATION, Info.PLANE);
+		        }
+		        else if (cur_trans.equals(Info.CAR)) {
+		        	fly_button.setBackgroundResource(R.drawable.ct_air);
+		        	car_button.setBackgroundResource(R.drawable.ct_road_o);
+		        	prefs_editor.putString(TripSQLiteHelper.TRANSPORTATION, Info.PLANE);
+		        }
+		        else if (cur_trans.equals(Info.PLANE)) {
+		        	fly_button.setBackgroundResource(R.drawable.ct_air_o);
+		        	prefs_editor.putString(TripSQLiteHelper.TRANSPORTATION, null);
+		        }
+		        prefs_editor.commit();
+			}
+		});
+        
+        male_button.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
+		        SharedPreferences.Editor prefs_editor = prefs.edit();
+		        String cur_gender = prefs.getString(TripSQLiteHelper.GENDER, null);
+		        
+		        if (cur_gender == null) {
+		        	male_button.setBackgroundResource(R.drawable.ct_male);
+		        	prefs_editor.putString(TripSQLiteHelper.GENDER, Info.MALE);
+		        }
+		        else if (cur_gender.equals(Info.MALE)) {
+		        	male_button.setBackgroundResource(R.drawable.ct_male_o);
+		        	prefs_editor.putString(TripSQLiteHelper.GENDER, null);
+		        }
+		        else if (cur_gender.equals(Info.FEMALE)) {
+		        	male_button.setBackgroundResource(R.drawable.ct_male);
+		        	female_button.setBackgroundResource(R.drawable.ct_female_o);
+		        	prefs_editor.putString(TripSQLiteHelper.GENDER, Info.MALE);
+		        }
+		        prefs_editor.commit();
+			}
+		});
+        
+        female_button.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
+		        SharedPreferences.Editor prefs_editor = prefs.edit();
+		        String cur_gender = prefs.getString(TripSQLiteHelper.GENDER, null);
+		        
+		        if (cur_gender == null) {
+		        	female_button.setBackgroundResource(R.drawable.ct_female);
+		        	prefs_editor.putString(TripSQLiteHelper.GENDER, Info.FEMALE);
+		        }
+		        else if (cur_gender.equals(Info.MALE)) {
+		        	female_button.setBackgroundResource(R.drawable.ct_female);
+		        	male_button.setBackgroundResource(R.drawable.ct_male_o);
+		        	prefs_editor.putString(TripSQLiteHelper.GENDER, Info.FEMALE);
+		        }
+		        else if (cur_gender.equals(Info.FEMALE)) {
+		        	female_button.setBackgroundResource(R.drawable.ct_female_o);
+		        	prefs_editor.putString(TripSQLiteHelper.GENDER, null);
+		        }
+		        prefs_editor.commit();
+			}
+		});
+
         duration_from = (EditText) findViewById(R.id.from_date);
         duration_to = (EditText) findViewById(R.id.to_date);
        

@@ -36,12 +36,12 @@ public class MainMenuActivity extends Activity {
         	TextView trip_text = (TextView) cur_trip.findViewById(R.id.trip_name);
         	trip_text.setText(trip_name);
         	cur_trip.setId(cur_id);
+        	RelativeLayout.LayoutParams q = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
         	if (cur_id != 0) {
-        		RelativeLayout.LayoutParams q = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
                 q.addRule(RelativeLayout.BELOW, cur_id - 1);
-        		cur_trip.setLayoutParams(q);
         	}
+        	cur_trip.setLayoutParams(q);
         	cur_id++;
         	trip_list.addView(cur_trip);
         }

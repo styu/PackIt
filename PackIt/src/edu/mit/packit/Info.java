@@ -8,6 +8,10 @@ public class Info {
 	public static final String MALE = "male";
 	public static final String FEMALE = "female";
 	
+	public static final String WALK = "walking";
+	public static final String CAR = "car";
+	public static final String PLANE = "plane";
+	
 	public static final String[] CATEGORIES = {
 		"SHIRTS",
 		"JACKETS",

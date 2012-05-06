@@ -31,7 +31,7 @@ public class SettingsActivity extends Activity {
         PackItActivity.datasource.open();
         if (!trip_name.equals("")) {
         	 TripDetails trip = PackItActivity.datasource.getTrip(trip_name);
-        	 test_text.setText(trip.getTripName() + " " + trip.getLocation() + " " + trip.getFromDate() + " " + trip.getToDate());
+        	 test_text.setText(trip.getTripName() + " " + trip.getLocation() + " " + trip.getFromDate() + " " + trip.getToDate() + " " + trip.getTransportation() + " " + trip.getGender());
         }
        
         home_button.setOnClickListener(new View.OnClickListener() {
