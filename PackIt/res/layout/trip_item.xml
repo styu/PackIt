@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="60dp"
-    android:textSize="17sp" 
-    android:textStyle="bold"
-    android:background="@layout/borderbox"
-    android:layout_marginBottom="10dp"
-    android:layout_marginTop="10dp"
-    android:textColor="#07525a"
-    android:gravity="center_vertical|center_horizontal"
-    android:padding= "10dp"
-    >
-</TextView>	
+    android:layout_height="wrap_content">
+    <TextView 
+        android:id="@+id/trip_name"
+	    android:layout_width="fill_parent"
+	    android:layout_height="60dp"
+	    android:textSize="17sp" 
+	    android:textStyle="bold"
+	    android:background="@layout/borderbox"
+	    android:layout_marginBottom="5dp"
+	    android:layout_marginTop="5dp"
+	    android:textColor="#07525a"
+	    android:gravity="center_vertical|center_horizontal"
+	    android:padding= "10dp"
+    />
+</LinearLayout>
+
