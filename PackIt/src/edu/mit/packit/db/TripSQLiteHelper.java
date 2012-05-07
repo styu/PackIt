@@ -33,6 +33,23 @@ public class TripSQLiteHelper extends SQLiteOpenHelper {
 		    + " text not null, " + TO_DATE
 		    + " text not null);";
 	
+	//trip items table fields
+	public static final String TRIP_ID = "trip_id";
+	public static final String ITEM = "item";
+	public static final String CATEGORY = "category";
+	public static final String PACKED = "packed";
+	public static final String UNPACKED = "unpacked";
+	
+	//trip items database creation sql statement
+	private static final String TRIPITEMS_DB_CREATE = "create table " +
+			TABLE_ITEMS + "( " + COLUMN_ID
+			+ " integer primary key autoincrement, " + TRIP_ID
+			+ " integer, " + ITEM
+			+ " integer, " + CATEGORY
+			+ " text not null, " + PACKED
+			+ " integer not null, " + UNPACKED
+			+ " integer not null);";
+	
 	public TripSQLiteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -43,6 +60,7 @@ public class TripSQLiteHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase database) {
 		database.execSQL(TRIPINFO_DB_CREATE);
+		database.execSQL(TRIPITEMS_DB_CREATE);
 	}
 
 	@Override
@@ -51,6 +69,7 @@ public class TripSQLiteHelper extends SQLiteOpenHelper {
 				"Upgrading database from version " + oldVersion + " to "
 						+ newVersion + ", which will destroy all old data");
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_TRIPINFO);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_ITEMS);
 		onCreate(db);
 	}
 

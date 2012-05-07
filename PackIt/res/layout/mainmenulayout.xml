@@ -7,6 +7,7 @@
     android:isScrollContainer="true"
     >
     <LinearLayout
+    android:id="@+id/main_menu"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
@@ -75,9 +76,7 @@
 	    android:layout_height="wrap_content"
 	    android:layout_width="fill_parent"
 	    android:padding="10dp"
-	    >
-
-   
+	    >    
 	</RelativeLayout>
 	<RelativeLayout
 	    android:layout_height="wrap_content"

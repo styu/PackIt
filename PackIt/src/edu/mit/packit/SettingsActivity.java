@@ -1,5 +1,9 @@
 package edu.mit.packit;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.mit.packit.db.ItemDetails;
 import edu.mit.packit.db.TripDetails;
 import edu.mit.packit.db.TripSQLiteHelper;
 import android.app.Activity;
@@ -24,7 +28,7 @@ public class SettingsActivity extends Activity {
         ImageView trip_button = (ImageView) findViewById(R.id.info_button);
         
         TextView test_text = (TextView) findViewById(R.id.info);
-        
+        TextView item_testText = (TextView) findViewById(R.id.items);
         SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
         String trip_name = prefs.getString(TripSQLiteHelper.TRIP_NAME, "");
         Log.i(TAG, trip_name);
@@ -32,6 +36,12 @@ public class SettingsActivity extends Activity {
         if (!trip_name.equals("")) {
         	 TripDetails trip = PackItActivity.datasource.getTrip(trip_name);
         	 test_text.setText(trip.getTripName() + " " + trip.getLocation() + " " + trip.getFromDate() + " " + trip.getToDate() + " " + trip.getTransportation() + " " + trip.getGender());
+        	 ArrayList<ItemDetails> items = PackItActivity.datasource.getTripItems(trip_name);
+        	 String itemList = "";
+        	 for (ItemDetails item : items) {
+        		 itemList += "" + item.getItem() + " ";
+        	 }
+        	 item_testText.setText(itemList);
         }
        
         home_button.setOnClickListener(new View.OnClickListener() {

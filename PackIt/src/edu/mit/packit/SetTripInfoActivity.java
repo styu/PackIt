@@ -54,19 +54,25 @@ public class SetTripInfoActivity extends Activity {
 				// TODO add calendar widget to get date
 				
 				EditText from_date = (EditText) ((Activity) v.getContext()).findViewById(R.id.from_date);
-				details.put(TripSQLiteHelper.FROM_DATE, from_date.getText().toString());
+				String start_date = from_date.getText().toString();
+				details.put(TripSQLiteHelper.FROM_DATE, start_date);
 				
 				// TODO add calendar widget to get date
 				
 				EditText to_date = (EditText) ((Activity) v.getContext()).findViewById(R.id.to_date);
-				details.put(TripSQLiteHelper.TO_DATE, to_date.getText().toString());
+				String end_date = to_date.getText().toString();
+				details.put(TripSQLiteHelper.TO_DATE, end_date);
 				
 				String gender = prefs.getString(TripSQLiteHelper.GENDER, "");
 				details.put(TripSQLiteHelper.GENDER, gender);
 				
 				String transportation = prefs.getString(TripSQLiteHelper.TRANSPORTATION, "");
 				details.put(TripSQLiteHelper.TRANSPORTATION, transportation);
-				PackItActivity.datasource.createTrip(details);
+				
+				long duration = Info.getDateDifference(Info.getDate(start_date), Info.getDate(end_date));
+
+				PackItActivity.datasource.createTrip(details, Info.getDBEntries(Info.getItemListOne(gender), Math.abs(duration)));
+				
 				
 				Intent intent = new Intent(v.getContext(),
 							PackActivity.class);
