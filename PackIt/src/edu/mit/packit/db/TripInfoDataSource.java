@@ -155,6 +155,28 @@ public class TripInfoDataSource {
 		details.setUnpacked(cursor.getInt(5));
 		return details;
 	}
+	public ArrayList<ItemDetails> getCategoryItems(String trip_name, String category) {
+		Cursor cursor = database.query(TripSQLiteHelper.TABLE_TRIPINFO, new String[] {TripSQLiteHelper.COLUMN_ID}, TripSQLiteHelper.TRIP_NAME + " = \'" + trip_name +"\'", null, null, null, null);
+		Log.i(TAG, ""+cursor.moveToFirst());
+		ArrayList<ItemDetails> items = new ArrayList<ItemDetails>();
+		if (cursor.moveToFirst()) {
+			long trip_id = cursor.getLong(0);
+//			Cursor itemCursor = database.query(TripSQLiteHelper.TABLE_ITEMS, tripitem_cols, TripSQLiteHelper.TRIP_ID + " = " + trip_id, null, null, null, null);
+			Cursor itemCursor = database.query(TripSQLiteHelper.TABLE_ITEMS, 
+					tripitem_cols, 
+					TripSQLiteHelper.TRIP_ID + " = ?  AND " + TripSQLiteHelper.CATEGORY + " = ?", 
+					new String[] { ""+ trip_id, category}, 
+					null, null, null);
+			Log.i(TAG, ""+itemCursor.moveToFirst());
+			while (!itemCursor.isAfterLast()) {
+				ItemDetails detail = cursorToItem(itemCursor);
+				items.add(detail);
+				itemCursor.moveToNext();
+			}
+		}
+		return items;
+	}
+	
 	public ArrayList<ItemDetails> getTripItems(String trip_name) {
 		Cursor cursor = database.query(TripSQLiteHelper.TABLE_TRIPINFO, new String[] {TripSQLiteHelper.COLUMN_ID}, TripSQLiteHelper.TRIP_NAME + " = \'" + trip_name +"\'", null, null, null, null);
 		Log.i(TAG, ""+cursor.moveToFirst());

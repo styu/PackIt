@@ -27,6 +27,7 @@ public class Info {
 	public static final int TWO_WEEKS = 14;
 	public static final int ONE_MONTH = 28;
 	
+	public static final String CATEGORY = "category";
 	public static final String[] CATEGORIES = {
 		"SHIRTS",
 		"JACKETS",
@@ -88,6 +89,7 @@ item she wants to add: ipod, camera
 		list.put(R.drawable.misc_toothbrush, Info.CATEGORIES[Info.MISC]);
 		list.put(R.drawable.misc_toothpaste, Info.CATEGORIES[Info.MISC]);
 		list.put(R.drawable.misc_umbrella, Info.CATEGORIES[Info.MISC]);
+		list.put(R.drawable.misc_fishingrod, Info.CATEGORIES[Info.MISC]);
 		return list;
 	}
 	
@@ -106,7 +108,7 @@ item she wants to add: ipod, camera
 	}
 	
 	public static int getQuantity(int item, String category, long duration) {
-		if (category.equals(Info.UNDERGARMENTS) || category.equals(Info.SHIRTS)) {
+		if (category.equals(Info.CATEGORIES[Info.UNDERGARMENTS]) || category.equals(Info.CATEGORIES[Info.SHIRTS])) {
 			if (duration <= Info.WEEK) {
 				return (int) (duration);
 			}
@@ -117,7 +119,7 @@ item she wants to add: ipod, camera
 				return Info.TWO_WEEKS;
 			}
 		}
-		if (category.equals(Info.ACCESSORIES)) {
+		if (category.equals(Info.CATEGORIES[Info.ACCESSORIES])) {
 			if (item == R.drawable.accessories_socks) {
 				if (duration <= Info.WEEK) {
 					return (int) (duration);
@@ -133,14 +135,16 @@ item she wants to add: ipod, camera
 				return 1;
 			}
 		}
-		if (category.equals(Info.MISC)) {
-			// TODO add if statement chcecking for added items
+		if (category.equals(Info.CATEGORIES[Info.MISC])) {
+			if (item == R.drawable.misc_fishingrod) {
+				return 0;
+			}
 			return 1;
 		}
-		if (category.equals(Info.JACKETS)) {
+		if (category.equals(Info.CATEGORIES[Info.JACKETS])) {
 			return 1;
 		}
-		if (category.equals(Info.PANTS)) {
+		if (category.equals(Info.CATEGORIES[Info.PANTS])) {
 			if (duration <= Info.WEEK) {
 				return (int) (duration/2);
 			}
