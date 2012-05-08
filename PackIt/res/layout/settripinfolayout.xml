@@ -88,6 +88,7 @@
 	    
 	    	<EditText
 	        android:id="@+id/destination_field"
+	        android:background="@null"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginRight="30dp"
