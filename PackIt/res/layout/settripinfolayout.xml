@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-   <!-- Action bar  -->
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:isScrollContainer="true"
+    >
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+	
+	   <!-- Action bar  -->
     <RelativeLayout
+        	android:id="@+id/action_bar"
 	        android:background="@drawable/action_bar"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:maxHeight="50dp"
 	        >
-	        <ImageView 
-	            android:id="@+id/logo"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_centerVertical="true"
-	            android:src="@drawable/topbar_packitlogo"
-	            android:layout_alignParentLeft="true"
-	            android:layout_marginLeft="10dp"
-	            
-	            />
+		    <ImageView
+				android:id="@+id/logo"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:src="@drawable/topbar_packitlogo"
+				android:layout_alignParentLeft="true"
+				android:layout_marginLeft="10dp"
+				android:contentDescription="@string/app_name"
+			/>
 	        <ImageView
 	            android:id="@+id/settings_button"
 	            android:layout_width="wrap_content"
@@ -29,6 +37,7 @@
 	            android:src="@drawable/topbaricon_settings"
 	            android:layout_alignParentRight="true"
 	            android:layout_marginRight="6dp"
+	            android:contentDescription="@string/settings"
 	            />
 	        <ImageView
 	            android:id="@+id/packing_button"
@@ -38,6 +47,7 @@
 	            android:src="@drawable/topbaricon_packing"
 	            android:layout_toLeftOf="@id/settings_button"
 	            android:layout_marginRight="6dp"
+	            android:contentDescription="@string/pack"
 	            />
 	        <ImageView
 	            android:id="@+id/info_button"
@@ -47,6 +57,7 @@
 	            android:src="@drawable/topbaricon_info"
 	            android:layout_toLeftOf="@id/packing_button"
 	            android:layout_marginRight="6dp"
+	            android:contentDescription="@string/packing_tips"
 	            />
 	         <ImageView
 	            android:id="@+id/home_button"
@@ -56,181 +67,179 @@
 	            android:src="@drawable/topbaricon_home"
 	            android:layout_toLeftOf="@id/info_button"
 	            android:layout_marginRight="6dp"
+	            android:contentDescription="@string/home"
 	            />
-	</RelativeLayout>
-	<!-- Set trip info fields -->
-	<RelativeLayout
-	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent">
-	    <TextView 
-        android:id="@+id/destination_title"
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:text="Destination"
-        android:textSize="15.5sp"
-        android:gravity="center_vertical"
-        android:paddingLeft="5dp"
-        android:background="@drawable/ct_bar"
-        android:textColor="@color/white"
-        />
-    
-    	<EditText
-        android:id="@+id/destination_field"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="30dp"
-        android:imeOptions="actionDone"
-        android:inputType="text"
-        android:layout_below="@id/destination_title"
-        android:textColorHighlight="@color/green"
-        />
-     <TextView 
-        android:id="@+id/mode_label"
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:text="Mode of Transportation"
-        android:textSize="15.5sp"
-        android:gravity="center_vertical"
-        android:paddingLeft="5dp"
-        android:background="@drawable/ct_bar"
-        android:textColor="@color/white"
-        android:layout_below="@id/destination_field"
-        />
-	<LinearLayout
-	    android:id="@+id/button_row"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@id/mode_label"
-	    >
+		</RelativeLayout>
+		<!-- Set trip info fields -->
+		<RelativeLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent">
+		    <TextView 
+	        android:id="@+id/destination_title"
+	        android:layout_width="fill_parent"
+	        android:layout_height="30dp"
+	        android:text="Destination"
+	        android:textSize="15.5sp"
+	        android:gravity="center_vertical"
+	        android:paddingLeft="5dp"
+	        android:background="@drawable/ct_bar"
+	        android:textColor="@color/white"
+	        />
+	    
+	    	<EditText
+	        android:id="@+id/destination_field"
+	        android:background="@null"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginRight="30dp"
+	        android:imeOptions="actionDone"
+	        android:inputType="text"
+	        android:layout_below="@id/destination_title"
+	        android:textColorHighlight="@color/green"
+	        />
+	     <TextView 
+	        android:id="@+id/mode_label"
+	        android:layout_width="fill_parent"
+	        android:layout_height="30dp"
+	        android:text="Mode of Transportation"
+	        android:textSize="15.5sp"
+	        android:gravity="center_vertical"
+	        android:paddingLeft="5dp"
+	        android:background="@drawable/ct_bar"
+	        android:textColor="@color/white"
+	        android:layout_below="@id/destination_field"
+	        />
+		<LinearLayout
+		    android:id="@+id/button_row"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@id/mode_label"
+		    >
+		    <Button
+	            android:id="@+id/walking_button"
+	            android:layout_width="fill_parent"
+	            android:layout_height="100dp"
+	            android:layout_weight="1"
+	            android:layout_marginRight="2dp"
+	            android:background="@drawable/ct_ground_o"
+	        />
+	        <Button
+	            android:id="@+id/car_button"
+	            android:layout_width="fill_parent"
+	            android:layout_height="100dp"
+	            android:layout_weight= "1"
+	            android:layout_marginLeft="2dp"
+	            android:layout_marginRight="2dp"
+	            android:background="@drawable/ct_road_o"
+	           />
+	        <Button
+	            android:id="@+id/plane_button"
+	            android:layout_width="fill_parent"
+	            android:layout_height="100dp"
+	            android:layout_weight="1"
+	            android:layout_marginLeft="2dp"
+	            android:background="@drawable/ct_air_o"
+	            />
+	    </LinearLayout>
+	    <TextView
+	        android:id="@+id/gender_label"
+	        android:layout_width="fill_parent"
+	        android:layout_height="30dp"
+	        android:text="Gender"
+	        android:textSize="15.5sp"
+	        android:gravity="center_vertical"
+	        android:paddingLeft="5dp"
+	        android:background="@drawable/ct_bar"
+	        android:textColor="@color/white"
+	        android:layout_below ="@id/button_row"
+	        />
+	    <LinearLayout
+	        android:layout_width="300dp"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/gender_button_container"
+	        android:layout_centerHorizontal="true"
+	        android:layout_below="@id/gender_label"
+	        >
+	        <Button
+	            android:id="@+id/male"
+	            android:layout_width="fill_parent"
+	            android:layout_height="90dp"
+	            android:background="@drawable/ct_male_o"
+	            android:layout_marginRight="2dp"
+	            android:layout_weight="1"
+	            />
+	        <Button
+	            android:id="@+id/female"
+	            android:layout_width="fill_parent"
+	            android:layout_height="90dp"
+	            android:background="@drawable/ct_female_o"
+	            android:layout_marginLeft="2dp"
+	            android:layout_weight="1"
+	            />
+	    </LinearLayout>
+	    <TextView
+	        android:id="@+id/date_label"
+	         android:layout_width="fill_parent"
+	        android:layout_height="30dp"
+	        android:textSize="15.5sp"
+	        android:gravity="center_vertical"
+	        android:paddingLeft="5dp"
+	        android:background="@drawable/ct_bar"
+	        android:textColor="@color/white"
+	        android:text="Duration"
+	        android:layout_below="@id/gender_button_container"
+	        />
+	        <TextView android:id="@+id/dash" 
+	        android:layout_below="@id/date_label"
+			android:layout_width="wrap_content"
+			android:layout_height="35dp" 
+			android:layout_centerHorizontal="true" 
+			android:layout_centerVertical="true"
+			android:gravity="center_vertical"
+			android:text="-"/>
+	    	    <EditText 
+				    android:id="@+id/from_date" 
+				    android:layout_width="100dp" 
+				    android:layout_height="40dp"
+				    android:imeOptions="actionDone"
+				    android:inputType="text"
+				    android:layout_below="@id/date_label"
+				    android:layout_toLeftOf="@id/dash"
+				    android:focusable="false"/>
+		        <EditText 
+				    android:id="@+id/to_date" 
+				    android:layout_width="100dp" 
+				    android:layout_height="40dp"
+				    android:imeOptions="actionDone"
+				    android:inputType="text"
+				    android:layout_below="@id/date_label"
+				    android:layout_toRightOf="@id/dash"
+				    android:focusable="false"/>
+		        
+		  <LinearLayout
+		      android:layout_width="fill_parent"
+		      android:layout_height="wrap_content"
+		      android:layout_alignParentBottom="true"
+		      android:layout_below="@id/dash"
+		      android:layout_marginTop="15dp"
+		      >
+		      <Button
+	        android:id="@+id/back_button"
+	        android:layout_width="fill_parent"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
+	        android:text="Go back"
+	        />
+	    
 	    <Button
-            android:id="@+id/walking_button"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/ct_ground_o"
-            android:drawablePadding="0dp"
-            android:background="@null"
-        />
-        <Button
-            android:id="@+id/car_button"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight= "1"
-            android:drawableTop="@drawable/ct_road_o"
-            android:drawablePadding="0dp"
-            android:background="@null"
-           />
-        <Button
-            android:id="@+id/plane_button"
-            android:layout_width="fill_parent"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/ct_air_o"
-            android:drawablePadding="0dp"
-            android:background="@null"
-            />
-    </LinearLayout>
-    <TextView
-        android:id="@+id/gender_label"
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:text="Gender"
-        android:textSize="15.5sp"
-        android:gravity="center_vertical"
-        android:paddingLeft="5dp"
-        android:background="@drawable/ct_bar"
-        android:textColor="@color/white"
-        android:layout_below ="@id/button_row"
-        />
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/gender_button_container"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/gender_label"
-        >
-        <Button
-            android:id="@+id/male"
-            android:layout_width="fill_parent"
-            android:layout_height="100dp"
-            android:drawableTop="@drawable/ct_male_o"
-            android:drawablePadding="0dp"
-            android:background="@null"
-            android:layout_weight="1"
-            />
-        <Button
-            android:id="@+id/female"
-            android:layout_width="fill_parent"
-            android:layout_height="100dp"
-            android:drawableTop="@drawable/ct_female_o"
-            android:drawablePadding="0dp"
-            android:background="@null"
-            android:layout_weight="1"
-            />
-    </LinearLayout>
-    <TextView
-        android:id="@+id/date_label"
-         android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:textSize="15.5sp"
-        android:gravity="center_vertical"
-        android:paddingLeft="5dp"
-        android:background="@drawable/ct_bar"
-        android:textColor="@color/white"
-        android:text="Duration"
-        android:layout_below="@id/gender_button_container"
-        />
-        <TextView android:id="@+id/dash" 
-        android:layout_below="@id/date_label"
-		android:layout_width="wrap_content"
-		android:layout_height="35dp" 
-		android:layout_centerHorizontal="true" 
-		android:layout_centerVertical="true"
-		android:gravity="center_vertical"
-		android:text="-"/>
-    	    <EditText 
-			    android:id="@+id/from_date" 
-			    android:layout_width="100dp" 
-			    android:layout_height="40dp"
-			    android:imeOptions="actionDone"
-			    android:inputType="text"
-			    android:layout_below="@id/date_label"
-			    android:layout_toLeftOf="@id/dash"
-			    android:focusable="false"/>
-	        <EditText 
-			    android:id="@+id/to_date" 
-			    android:layout_width="100dp" 
-			    android:layout_height="40dp"
-			    android:imeOptions="actionDone"
-			    android:inputType="text"
-			    android:layout_below="@id/date_label"
-			    android:layout_toRightOf="@id/dash"
-			    android:focusable="false"/>
-	        
-	  <LinearLayout
-	      android:layout_width="fill_parent"
-	      android:layout_height="wrap_content"
-	      android:layout_alignParentBottom="true"
-	      >
-	      <Button
-        android:id="@+id/back_button"
-        android:layout_width="fill_parent"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:text="Go back"
-        android:layout_below="@id/dash"
-        />
-    
-    <Button
-        android:id="@+id/go_button"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:layout_weight="1"
-        android:text="Continue"
-        android:layout_below="@id/dash"
-        android:layout_toRightOf="@id/back_button"
-        />
-	      
-	  </LinearLayout>
-	</RelativeLayout>
-</LinearLayout>
+	        android:id="@+id/go_button"
+	        android:layout_height="wrap_content"
+	        android:layout_width="fill_parent"
+	        android:layout_weight="1"
+	        android:text="Continue"
+	        />
+		      
+		  </LinearLayout>
+		</RelativeLayout>
+	</LinearLayout>
+</ScrollView>

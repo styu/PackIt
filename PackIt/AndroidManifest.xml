@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainMenuActivity"
+            android:configChanges="keyboardHidden|orientation"
             android:theme="@style/packItTheme"></activity>
         <activity android:name=".SetTripInfoActivity"
             android:theme="@style/packItTheme"></activity>

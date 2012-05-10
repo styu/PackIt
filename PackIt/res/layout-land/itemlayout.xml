@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
@@ -26,42 +28,45 @@
 	        android:scrollbars="horizontal"
 	        android:layout_gravity="center_vertical"
 	        >
-	     <LinearLayout
-	        android:id="@+id/bringitems_view"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        
-	        >
-	    </LinearLayout>
+		     <LinearLayout
+		        android:id="@+id/bringitems_view"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        
+		        >
+		    </LinearLayout>
 	    </HorizontalScrollView>
 	</RelativeLayout>
-	<RelativeLayout
-	    android:id="@+id/pack_view"
+	<!-- Packed items -->
+	<ScrollView
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
+	    android:isScrollContainer="true"
 	    android:layout_below="@id/shelf_view"
 	    >
-	    <ImageView
-	        android:id="@+id/backpack"
-	        android:src="@drawable/backpack"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:gravity="center_horizontal"
-	        android:layout_gravity="center_horizontal"
-	        android:layout_alignParentBottom="true"
-	        />
-	    <LinearLayout
-	        android:id="@+id/packeditems_view"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_above="@id/backpack"
-	        android:layout_below="@id/pack_view"
-	        android:background="#ffffff"
-	        >
-	        
-	    </LinearLayout>
-	    
-    </RelativeLayout>
+		<RelativeLayout
+		    android:id="@+id/pack_view"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    >
+			    <LinearLayout
+			        android:id="@+id/packeditems_view"
+			        android:layout_width="fill_parent"
+			        android:layout_height="150dp"
+			        android:background="#ffffff"
+			        >
+			    </LinearLayout>
+			    <ImageView
+			        android:id="@+id/backpack"
+			        android:src="@drawable/backpack"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_horizontal"
+			        android:layout_gravity="center_horizontal"
+			        android:layout_marginTop="50dp"
+			        />
+	    </RelativeLayout>
+    </ScrollView>
     <RelativeLayout
         android:id="@+id/add_view"
 	    android:layout_width="fill_parent"

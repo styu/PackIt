@@ -9,17 +9,7 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 
 public class PackActivity extends TabActivity {
-	
-	public static final int SHIRTS = 0;
-	public static final int JACKETS = 1;
-	public static final int PANTS = 2;
-	public static final int FORMAL_WEAR = 3;
-	public static final int WINTER_GEAR = 4;
-	public static final int UNDERWEAR = 5;
-	public static final int MISC = 6;
-	
-	public static final String CATEGORY = "category";
-	
+
 	@Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
@@ -57,13 +47,13 @@ public class PackActivity extends TabActivity {
         
         TabHost tabHost = getTabHost();  // The activity TabHost
         
-        addTab(tabHost, PackActivity.SHIRTS);
-        addTab(tabHost, PackActivity.JACKETS);
-        addTab(tabHost, PackActivity.PANTS);
-        addTab(tabHost, PackActivity.FORMAL_WEAR);
-        addTab(tabHost, PackActivity.WINTER_GEAR);
-        addTab(tabHost, PackActivity.UNDERWEAR);
-        addTab(tabHost, PackActivity.MISC);
+        addTab(tabHost, Info.SHIRTS);
+        addTab(tabHost, Info.JACKETS);
+        addTab(tabHost, Info.PANTS);
+        addTab(tabHost, Info.FORMAL);
+        addTab(tabHost, Info.ACCESSORIES);
+        addTab(tabHost, Info.UNDERGARMENTS);
+        addTab(tabHost, Info.MISC);
         
         tabHost.setCurrentTab(0);
         
@@ -71,40 +61,31 @@ public class PackActivity extends TabActivity {
 	
 	private void addTab(TabHost tabHost, int type) {
     	Intent intent = new Intent(this, ItemActivity.class);
-    	String label_string;
     	int drawableId;
     	switch (type) {
-    	case SHIRTS: intent.putExtra(PackActivity.CATEGORY, PackActivity.SHIRTS);
-    	label_string = "Shirts";
+    	case Info.SHIRTS: intent.putExtra(Info.CATEGORY, Info.SHIRTS);
     	drawableId = R.drawable.category_shirt_48x75;
     			break;
-    	case JACKETS: intent.putExtra(PackActivity.CATEGORY, PackActivity.JACKETS);
-    	label_string = "Jackets";
+    	case Info.JACKETS: intent.putExtra(Info.CATEGORY, Info.JACKETS);
     	drawableId = R.drawable.category_outerwear_48x75;
     			break;
-    	case PANTS: intent.putExtra(PackActivity.CATEGORY, PackActivity.PANTS);
-    	label_string = "Pants";
+    	case Info.PANTS: intent.putExtra(Info.CATEGORY, Info.PANTS);
     	drawableId = R.drawable.category_pants_48x75;
     		break;
-    	case FORMAL_WEAR: intent.putExtra(PackActivity.CATEGORY, PackActivity.FORMAL_WEAR);
-    	label_string = "Formal wear";
+    	case Info.FORMAL: intent.putExtra(Info.CATEGORY, Info.FORMAL);
     	drawableId = R.drawable.category_formal_48x75;
     		break;
-    	case WINTER_GEAR: intent.putExtra(PackActivity.CATEGORY, PackActivity.WINTER_GEAR);
-    	label_string = "Winter gear";
+    	case Info.ACCESSORIES: intent.putExtra(Info.CATEGORY, Info.ACCESSORIES);
     	drawableId = R.drawable.category_access_48x75;
     		break;
-    	case UNDERWEAR: intent.putExtra(PackActivity.CATEGORY, PackActivity.UNDERWEAR);
-    	label_string = "Underwear";
+    	case Info.UNDERGARMENTS: intent.putExtra(Info.CATEGORY, Info.UNDERGARMENTS);
     	drawableId = R.drawable.category_underwear_48x75;
     		break;
-    	case MISC: intent.putExtra(PackActivity.CATEGORY, PackActivity.MISC);
-    	label_string = "Misc";
+    	case Info.MISC: intent.putExtra(Info.CATEGORY, Info.MISC);
     	drawableId = R.drawable.category_misc_48x75;
     		break;
-    	default: intent.putExtra(PackActivity.CATEGORY, PackActivity .SHIRTS);
-    	drawableId = R.drawable.category_underwear_48x75;
-    	label_string = "Shirts";
+    	default: intent.putExtra(Info.CATEGORY, Info.SHIRTS);
+    	drawableId = R.drawable.category_shirt_48x75;
     			break;
     	}
 
