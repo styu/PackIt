@@ -1,6 +1,7 @@
 package edu.mit.packit;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import edu.mit.packit.R;
 import edu.mit.packit.db.ItemDetails;
@@ -8,14 +9,13 @@ import edu.mit.packit.db.TripInfoDataSource;
 import edu.mit.packit.db.TripSQLiteHelper;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -113,7 +113,10 @@ public class ItemActivity extends Activity {
 	 protected void onResume() {
 		 Log.i(TAG, "here");
 		PackItActivity.datasource.open();
-		// TODO refresh content
+		int type = this.getIntent().getIntExtra(Info.CATEGORY, Info.SHIRTS);
+		SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
+        String trip_name = prefs.getString(TripSQLiteHelper.TRIP_NAME, null);
+		setContent(type, trip_name);
 		super.onResume();
 	}
 		
@@ -122,43 +125,148 @@ public class ItemActivity extends Activity {
 		super.onPause();
 	}
 	 
-	 public void setContent(int type, String trip_name) {
+	 public void setContent(int type, final String trip_name) {
 		 ArrayList<ItemDetails> items = PackItActivity.datasource.getCategoryItems(trip_name, Info.CATEGORIES[type]);
-		 View bring_items_view = (View) findViewById(R.id.bringitems_view);
-		 View packed_items_view = (View) findViewById(R.id.packeditems_view);
-		 View add_items_view = (View) findViewById(R.id.additems_view);
+		 final View bring_items_view = (View) findViewById(R.id.bringitems_view);
+		 final View packed_items_view = (View) findViewById(R.id.packeditems_view);
+		 final View add_items_view = (View) findViewById(R.id.additems_view);
 		 
 		 LayoutInflater vi = (LayoutInflater) this
 	                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		 for (ItemDetails i : items) {
 			 if (i.getUnpacked() > 0) {
-				 RelativeLayout item = (RelativeLayout) vi.inflate(R.layout.objectlayout, null);
-				 ImageView image = (ImageView) item.findViewById(R.id.item_image);
-				 image.setImageResource(i.getItem());
-				 TextView text = (TextView) item.findViewById(R.id.item_text);
-				 text.setText(""+ i.getUnpacked());
-				 ((LinearLayout) bring_items_view).addView(item);
-				 
-			 }
-			 if (i.getPacked() > 0) {
-				 RelativeLayout item = (RelativeLayout) vi.inflate(R.layout.objectlayout, null);
-				 ImageView image = (ImageView) item.findViewById(R.id.item_image);
-				 image.setImageResource(i.getItem());
-				 TextView text = (TextView) item.findViewById(R.id.item_text);
-				 text.setText(""+ i.getPacked());
-				 ((LinearLayout) packed_items_view).addView(item);
+				 final int item_id = i.getItem();
+				 RelativeLayout item_unpacked = (RelativeLayout) bring_items_view.findViewById((item_id & Info.ID_CONST) + Info.UNPACKED_ITEMS);
+				 final RelativeLayout item;
+				 if (item_unpacked == null) {
+					item = (RelativeLayout) vi.inflate(R.layout.objectlayout, null);
+					item.setId((item_id & Info.ID_CONST) + Info.UNPACKED_ITEMS);
+					 ImageView image = (ImageView) item.findViewById(R.id.item_image);
+					 image.setImageResource(item_id);
+					 TextView text = (TextView) item.findViewById(R.id.item_text);
+					 text.setText(""+ i.getUnpacked());
+					 ((LinearLayout) bring_items_view).addView(item);
+					 item.setOnClickListener(new View.OnClickListener() {
+							
+							public void onClick(View v) {
+								TextView text = (TextView) item.findViewById(R.id.item_text);
+								int cur_value = Integer.parseInt(text.getText().toString());
+								int id = item.getId();
+								
+								if (cur_value > 0) {
+									RelativeLayout packed_item = (RelativeLayout) packed_items_view.findViewById((id & Info.ID_CONST) + Info.PACKED_ITEMS);
+									String[] nums = PackItActivity.datasource.packItem(trip_name, item_id, 1).split(" ");
+//									Log.i(TAG, Arrays.toString(nums));
+									TextView item_text = (TextView) packed_item.findViewById(R.id.item_text);
+									if (Integer.parseInt(item_text.getText().toString()) == 0) {
+										item_text.setText(nums[Info.PACKED_INDEX]);
+										packed_item.setVisibility(View.VISIBLE);
+									}
+									else {
+										item_text.setText(nums[Info.PACKED_INDEX]);
+									}
+									text.setText(nums[Info.UNPACKED_INDEX]);
+									if (Integer.parseInt(nums[Info.UNPACKED_INDEX]) == 0) {
+										item.setVisibility(View.GONE);
+									}
+								}
+							}
+						});
+				 }
+				 else {	 
+					item = item_unpacked;
+					TextView text = (TextView) item.findViewById(R.id.item_text);
+					text.setText(""+ i.getUnpacked());
+					if (Integer.parseInt(text.getText().toString()) > 0) {
+						item.setVisibility(View.VISIBLE);
+					}
+				 }
 			 }
 		 }
 		 
 		 ArrayList<ItemDetails> allItems = PackItActivity.datasource.getTripItems(trip_name);
 		 for (ItemDetails i : allItems) {
 			 if (i.getUnpacked() > 0 || i.getPacked() > 0) {
-				 RelativeLayout item = (RelativeLayout) vi.inflate(R.layout.objectlayout, null);
-				 ImageView image = (ImageView) item.findViewById(R.id.item_image);
-				 image.setImageResource(i.getItem());
-				 TextView text = (TextView) item.findViewById(R.id.item_text);
-				 text.setText("+");
-				 ((LinearLayout) add_items_view).addView(item);
+				 final int item_id = i.getItem();
+				 RelativeLayout item_add = (RelativeLayout) add_items_view.findViewById((item_id & Info.ID_CONST) + Info.ADD_ITEMS);
+				 final RelativeLayout item;
+				 if (item_add == null) {
+					 item = (RelativeLayout) vi.inflate(R.layout.objectlayout, null);
+					 ImageView image = (ImageView) item.findViewById(R.id.item_image);
+					 image.setImageResource(item_id);
+					 TextView text = (TextView) item.findViewById(R.id.item_text);
+					 text.setText("+");
+					 ((LinearLayout) add_items_view).addView(item);
+					 
+					 item.setOnClickListener(new View.OnClickListener() {
+							
+							public void onClick(View v) {								
+								RelativeLayout unpacked_item = (RelativeLayout) bring_items_view.findViewById((item_id & Info.ID_CONST) + Info.UNPACKED_ITEMS);
+								String num = PackItActivity.datasource.addItem(trip_name, item_id, 1);
+								if (Integer.parseInt(num) > 0 && unpacked_item != null) {
+									unpacked_item.setVisibility(View.VISIBLE);
+									TextView item_text = (TextView) unpacked_item.findViewById(R.id.item_text);
+									item_text.setText(num);
+								}
+							}
+						});
+				 }
+				 
+			 }
+			 
+			 if (i.getPacked() >= 0) {
+				 final int item_id = i.getItem();
+				 RelativeLayout item_packed = (RelativeLayout) packed_items_view.findViewById((item_id & Info.ID_CONST) + Info.PACKED_ITEMS);
+				 final RelativeLayout item;
+				 if (item_packed == null) {
+					 item = (RelativeLayout) vi.inflate(R.layout.objectlayout, null);
+					 ImageView image = (ImageView) item.findViewById(R.id.item_image);
+					 image.setImageResource(item_id);
+					 item.setId((item_id & Info.ID_CONST) + Info.PACKED_ITEMS);
+//					 Log.i(TAG, ""+ ((i.getItem() & Info.ID_CONST) + Info.PACKED_ITEMS));
+					 TextView text = (TextView) item.findViewById(R.id.item_text);
+					 text.setText(""+ i.getPacked());
+					 ((LinearLayout) packed_items_view).addView(item);
+					 
+					 item.setOnClickListener(new View.OnClickListener() {
+							
+							public void onClick(View v) {
+								TextView text = (TextView) item.findViewById(R.id.item_text);
+								int cur_value = Integer.parseInt(text.getText().toString());
+								int id = item.getId();
+								
+								if (cur_value > 0) {
+									RelativeLayout unpacked_item = (RelativeLayout) bring_items_view.findViewById((id & Info.ID_CONST) + Info.UNPACKED_ITEMS);
+									String[] nums = PackItActivity.datasource.packItem(trip_name, item_id, -1).split(" ");
+//									Log.i(TAG, Arrays.toString(nums));
+									TextView item_text = (TextView) unpacked_item.findViewById(R.id.item_text);
+									if (Integer.parseInt(item_text.getText().toString()) == 0) {
+										item_text.setText(nums[Info.UNPACKED_INDEX]);
+										unpacked_item.setVisibility(View.VISIBLE);
+									}
+									else {
+										item_text.setText(nums[Info.UNPACKED_INDEX]);
+									}
+									text.setText(nums[Info.PACKED_INDEX]);
+									if (Integer.parseInt(nums[Info.PACKED_INDEX]) == 0) {
+										item.setVisibility(View.GONE);
+									}
+								}
+							}
+						});
+				 }
+				 else {	 
+					 item = item_packed;
+					 TextView text = (TextView) item.findViewById(R.id.item_text);
+					 text.setText(""+ i.getPacked());
+				 }
+				 
+				 if (i.getPacked() == 0) {
+					 item.setVisibility(View.GONE);
+				 }
+				 else {
+					 item.setVisibility(View.VISIBLE);
+				 }
 			 }
 		 }
 	 }

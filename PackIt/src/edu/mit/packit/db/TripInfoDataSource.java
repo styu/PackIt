@@ -157,17 +157,18 @@ public class TripInfoDataSource {
 	}
 	public ArrayList<ItemDetails> getCategoryItems(String trip_name, String category) {
 		Cursor cursor = database.query(TripSQLiteHelper.TABLE_TRIPINFO, new String[] {TripSQLiteHelper.COLUMN_ID}, TripSQLiteHelper.TRIP_NAME + " = \'" + trip_name +"\'", null, null, null, null);
-		Log.i(TAG, ""+cursor.moveToFirst());
+//		Log.i(TAG, ""+cursor.moveToFirst());
+		cursor.moveToFirst();
 		ArrayList<ItemDetails> items = new ArrayList<ItemDetails>();
 		if (cursor.moveToFirst()) {
 			long trip_id = cursor.getLong(0);
-//			Cursor itemCursor = database.query(TripSQLiteHelper.TABLE_ITEMS, tripitem_cols, TripSQLiteHelper.TRIP_ID + " = " + trip_id, null, null, null, null);
 			Cursor itemCursor = database.query(TripSQLiteHelper.TABLE_ITEMS, 
 					tripitem_cols, 
 					TripSQLiteHelper.TRIP_ID + " = ?  AND " + TripSQLiteHelper.CATEGORY + " = ?", 
 					new String[] { ""+ trip_id, category}, 
 					null, null, null);
-			Log.i(TAG, ""+itemCursor.moveToFirst());
+			itemCursor.moveToFirst();
+//			Log.i(TAG, ""+itemCursor.moveToFirst());
 			while (!itemCursor.isAfterLast()) {
 				ItemDetails detail = cursorToItem(itemCursor);
 				items.add(detail);
@@ -179,7 +180,7 @@ public class TripInfoDataSource {
 	
 	public ArrayList<ItemDetails> getTripItems(String trip_name) {
 		Cursor cursor = database.query(TripSQLiteHelper.TABLE_TRIPINFO, new String[] {TripSQLiteHelper.COLUMN_ID}, TripSQLiteHelper.TRIP_NAME + " = \'" + trip_name +"\'", null, null, null, null);
-		Log.i(TAG, ""+cursor.moveToFirst());
+//		Log.i(TAG, ""+cursor.moveToFirst());
 		ArrayList<ItemDetails> items = new ArrayList<ItemDetails>();
 		if (cursor.moveToFirst()) {
 			long trip_id = cursor.getLong(0);
@@ -192,5 +193,57 @@ public class TripInfoDataSource {
 			}
 		}
 		return items;
+	}
+	
+	public String packItem(String trip_name, int item, int amount) {
+		Cursor cursor = database.query(TripSQLiteHelper.TABLE_TRIPINFO, new String[] {TripSQLiteHelper.COLUMN_ID}, TripSQLiteHelper.TRIP_NAME + " = \'" + trip_name +"\'", null, null, null, null);
+		if (cursor.moveToFirst()) {
+			long trip_id = cursor.getLong(0);
+			Cursor itemCursor = database.query(TripSQLiteHelper.TABLE_ITEMS, 
+					tripitem_cols, 
+					TripSQLiteHelper.TRIP_ID + " = ?  AND " + TripSQLiteHelper.ITEM + " = ?", 
+					new String[] { ""+ trip_id, "" + item}, 
+					null, null, null);
+			if (itemCursor.moveToFirst()) {
+				int packed;
+				if ( (packed =  itemCursor.getInt(4) + amount) >= 0) {
+					int unpacked = itemCursor.getInt(5) - amount;
+					ContentValues values = new ContentValues();
+					values.put(TripSQLiteHelper.PACKED, packed);
+					values.put(TripSQLiteHelper.UNPACKED, unpacked);
+					int rows = database.update(TripSQLiteHelper.TABLE_ITEMS, 
+									values, 
+									TripSQLiteHelper.TRIP_ID + " = ? AND " + TripSQLiteHelper.ITEM + " = ?", 
+									new String[] { ""+ trip_id, "" + item});
+					if (rows > 0) return "" + unpacked + " " + packed;
+				}
+				return "-3";
+			}
+			return "-2";
+		}
+		return "-1";
+	}
+	
+	public String addItem(String trip_name, int item, int amount) {
+		Cursor cursor = database.query(TripSQLiteHelper.TABLE_TRIPINFO, new String[] {TripSQLiteHelper.COLUMN_ID}, TripSQLiteHelper.TRIP_NAME + " = \'" + trip_name +"\'", null, null, null, null);
+		if (cursor.moveToFirst()) {
+			long trip_id = cursor.getLong(0);
+			Cursor itemCursor = database.query(TripSQLiteHelper.TABLE_ITEMS, 
+					tripitem_cols, 
+					TripSQLiteHelper.TRIP_ID + " = ?  AND " + TripSQLiteHelper.ITEM + " = ?", 
+					new String[] { ""+ trip_id, "" + item}, 
+					null, null, null);
+			if (itemCursor.moveToFirst()) {
+				int unpacked = itemCursor.getInt(5) + amount;
+				ContentValues values = new ContentValues();
+				values.put(TripSQLiteHelper.UNPACKED, unpacked);
+				int rows = database.update(TripSQLiteHelper.TABLE_ITEMS, 
+								values, 
+								TripSQLiteHelper.TRIP_ID + " = ? AND " + TripSQLiteHelper.ITEM + " = ?", 
+								new String[] { ""+ trip_id, "" + item});
+				if (rows > 0) return "" + unpacked;
+			}
+		}
+		return "-1";
 	}
 }
