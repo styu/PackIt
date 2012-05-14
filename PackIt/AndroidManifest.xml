@@ -28,11 +28,14 @@
             android:theme="@style/packItTheme"
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity android:name=".PackActivity"
-            android:theme="@style/packItTheme"></activity>
+            android:theme="@style/packItTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
          <activity android:name=".ItemActivity"
-            android:theme="@style/packItTheme"></activity>
+            android:theme="@style/packItTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity android:name=".SettingsActivity"
-            android:theme="@style/packItTheme"></activity>
+            android:theme="@style/packItTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity android:name=".TripInfoActivity"
             android:theme="@style/packItTheme"></activity>  
         <activity android:name=".SetTripActivity"

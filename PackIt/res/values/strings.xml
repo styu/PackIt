@@ -8,5 +8,6 @@
     <string name="packing_tips">Packing Tips</string>
     <string name="pack">Pack</string>
     <string name="home">Home</string>
+    <string name="settings_prompt">Select a trip</string>
 
 </resources>

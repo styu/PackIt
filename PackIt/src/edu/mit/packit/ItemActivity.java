@@ -67,13 +67,59 @@ public class ItemActivity extends Activity {
 //	        item_text.setText(category_type);
 //	        
 
-	        Button add_button = (Button) findViewById(R.id.add_item_button);
+//	        Button add_button = (Button) findViewById(R.id.add_item_button);
 	        final ImageView edit_shelf_button = (ImageView) findViewById(R.id.edit_shelf_button);
 	        
 	        final RelativeLayout packView = (RelativeLayout) findViewById(R.id.pack_view);
 			final RelativeLayout addView = (RelativeLayout) findViewById(R.id.add_view);
 	        
+			View pack_view = (View) findViewById(R.id.pack_view);
+			View add_view = (View) findViewById(R.id.add_view);
+			final ImageView backpack_open = (ImageView) pack_view.findViewById(R.id.backpack);
+			final ImageView backpack_closed = (ImageView) add_view.findViewById(R.id.backpack);
 	        edit_shelf_button.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					SharedPreferences editToggle = getPreferences(MODE_PRIVATE);
+					SharedPreferences.Editor editor = editToggle.edit();
+					boolean isEditMode = editToggle.getBoolean(ItemActivity.EDIT_MODE, false);
+					if (!isEditMode) {
+						packView.setVisibility(View.GONE);
+						addView.setVisibility(View.VISIBLE);
+						edit_shelf_button.setImageResource(R.drawable.exit_btn_25x40);
+					}
+					else {
+						addView.setVisibility(View.GONE);
+						packView.setVisibility(View.VISIBLE);
+						edit_shelf_button.setImageResource(R.drawable.edit_btn_48x40);
+					}
+					editor.putBoolean(ItemActivity.EDIT_MODE, !isEditMode);
+					editor.commit();
+				}
+			});
+	        
+	        backpack_open.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					SharedPreferences editToggle = getPreferences(MODE_PRIVATE);
+					SharedPreferences.Editor editor = editToggle.edit();
+					boolean isEditMode = editToggle.getBoolean(ItemActivity.EDIT_MODE, false);
+					if (!isEditMode) {
+						packView.setVisibility(View.GONE);
+						addView.setVisibility(View.VISIBLE);
+						edit_shelf_button.setImageResource(R.drawable.exit_btn_25x40);
+					}
+					else {
+						addView.setVisibility(View.GONE);
+						packView.setVisibility(View.VISIBLE);
+						edit_shelf_button.setImageResource(R.drawable.edit_btn_48x40);
+					}
+					editor.putBoolean(ItemActivity.EDIT_MODE, !isEditMode);
+					editor.commit();
+				}
+			});
+	        
+	        backpack_closed.setOnClickListener(new View.OnClickListener() {
 				
 				public void onClick(View v) {
 					SharedPreferences editToggle = getPreferences(MODE_PRIVATE);
@@ -238,14 +284,18 @@ public class ItemActivity extends Activity {
 								if (cur_value > 0) {
 									RelativeLayout unpacked_item = (RelativeLayout) bring_items_view.findViewById((id & Info.ID_CONST) + Info.UNPACKED_ITEMS);
 									String[] nums = PackItActivity.datasource.packItem(trip_name, item_id, -1).split(" ");
-//									Log.i(TAG, Arrays.toString(nums));
-									TextView item_text = (TextView) unpacked_item.findViewById(R.id.item_text);
-									if (Integer.parseInt(item_text.getText().toString()) == 0) {
-										item_text.setText(nums[Info.UNPACKED_INDEX]);
+									if (unpacked_item != null) {
+//										Log.i(TAG, Arrays.toString(nums));
 										unpacked_item.setVisibility(View.VISIBLE);
-									}
-									else {
-										item_text.setText(nums[Info.UNPACKED_INDEX]);
+										TextView item_text = (TextView) unpacked_item.findViewById(R.id.item_text);
+										if (Integer.parseInt(item_text.getText().toString()) == 0) {
+											item_text.setText(nums[Info.UNPACKED_INDEX]);
+											unpacked_item.setVisibility(View.VISIBLE);
+										}
+										else {
+											item_text.setText(nums[Info.UNPACKED_INDEX]);
+										}
+										
 									}
 									text.setText(nums[Info.PACKED_INDEX]);
 									if (Integer.parseInt(nums[Info.PACKED_INDEX]) == 0) {

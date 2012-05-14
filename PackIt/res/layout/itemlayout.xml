@@ -37,33 +37,32 @@
 	<RelativeLayout
 	    android:id="@+id/pack_view"
 	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent"
+	    android:layout_height="wrap_content"
 	    android:layout_below="@id/shelf_view"
 	    >
-	    <ImageView
-	        android:id="@+id/backpack"
-	        android:src="@drawable/backpack"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:gravity="center_horizontal"
-	        android:layout_gravity="center_horizontal"
-	        android:layout_alignParentBottom="true"
+		<ImageView
+		        android:id="@+id/backpack"
+		        android:src="@drawable/backpack_open"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_horizontal"
+		        android:gravity="center_horizontal"
+		        android:layout_alignParentBottom="true"
 	        />
 	    <HorizontalScrollView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
 	        android:scrollbars="horizontal"
-	        android:layout_gravity="center_vertical"
-	        android:layout_above="@id/backpack"
-	        android:layout_below="@id/pack_view"
-	        android:background="#ffffff"
+	        android:background="@drawable/bubble2_backpack"
+	        android:scaleType="centerInside"
+			android:gravity="center"
+			android:layout_marginTop="15dp"
 	        >
 	    <LinearLayout
 	        android:id="@+id/packeditems_view"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        >
-	        
 	    </LinearLayout>
 	    </HorizontalScrollView>
     </RelativeLayout>
@@ -74,7 +73,7 @@
 	    android:layout_below="@id/shelf_view"
 	    android:visibility="gone"
         >
-        <EditText
+	    <!-- <EditText
             android:id="@+id/new_item_field"
             android:layout_width="150dp"
             android:layout_height="40dp"
@@ -103,20 +102,37 @@
             android:layout_toRightOf="@id/number_item_field"
             android:text="ADD"
             android:layout_alignParentBottom="true"
-            />
+            /> -->
+        <ImageView
+		        android:id="@+id/trashcan"
+		        android:src="@drawable/trashcan"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentBottom="true"
+		        />
+        <ImageView
+		        android:id="@+id/backpack"
+		        android:src="@drawable/backpack_closed"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_horizontal"
+		        android:gravity="center_horizontal"
+		        android:layout_alignParentBottom="true"
+	        />
         <HorizontalScrollView
             android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_above="@id/new_item_field"
-	        android:layout_below="@id/pack_view"
-	        android:background="#ffffff"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/bubble2_shelf"
+	        android:scaleType="centerInside"
+			android:gravity="center"
 	        >
             
             <LinearLayout
 		        android:id="@+id/additems_view"
 		        android:layout_width="wrap_content"
 		        android:layout_height="fill_parent"
-		        android:background="#ffffff"
+		        android:layout_marginTop="15dp"
 	        >
 	        
 	    	</LinearLayout>

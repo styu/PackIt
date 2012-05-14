@@ -73,9 +73,40 @@ public class TripInfoDataSource {
 //		cursor.close();
 	}
 	
-	public void deleteTrip(TripDetails trip) {
-		long id = trip.getId();
-		database.delete(TripSQLiteHelper.TABLE_TRIPINFO, TripSQLiteHelper.COLUMN_ID + " = " + id, null);
+	public int editTrip(HashMap<String, String> details, ArrayList<ContentValues> items, String trip_name) {
+		long id = deleteTripInfo(trip_name);
+		if (id >= 0) {
+			ContentValues values = new ContentValues();
+			for (String info : details.keySet()) {
+				values.put(info, details.get(info));
+			}
+			int rows = database.update(TripSQLiteHelper.TABLE_TRIPINFO, 
+					values, 
+					TripSQLiteHelper.COLUMN_ID + " = " + id, 
+					null);
+			if (rows >= 0) {
+				for (ContentValues item_values : items) {
+					item_values.put(TripSQLiteHelper.TRIP_ID, (int)(id));
+					database.insert(TripSQLiteHelper.TABLE_ITEMS, null, item_values);
+				}
+			}
+			return rows;
+		}
+		return -1;
+	}
+	public void deleteTrip(long trip_id) {
+		database.delete(TripSQLiteHelper.TABLE_TRIPINFO, TripSQLiteHelper.COLUMN_ID + " = " + trip_id, null);
+		database.delete(TripSQLiteHelper.TABLE_ITEMS, TripSQLiteHelper.TRIP_ID + " = " + trip_id, null);
+	}
+	
+	public long deleteTripInfo(String trip_name) {
+		Cursor cursor = database.query(TripSQLiteHelper.TABLE_TRIPINFO, new String[] {TripSQLiteHelper.COLUMN_ID}, TripSQLiteHelper.TRIP_NAME + " = \'" + trip_name +"\'", null, null, null, null);
+		if (cursor.moveToFirst()) {
+			long id = cursor.getLong(0);
+			database.delete(TripSQLiteHelper.TABLE_ITEMS, TripSQLiteHelper.TRIP_ID + " = " + id, null);
+			return id;
+		}
+		return -1;
 	}
 	
 	public void deleteAllTrips() {

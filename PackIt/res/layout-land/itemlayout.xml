@@ -49,6 +49,27 @@
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    >
+		     	<LinearLayout
+            android:id="@+id/icon_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            >
+	     	 <ImageView
+		        android:id="@+id/trashcan"
+		        android:src="@drawable/trashcan"
+		        android:layout_width="fill_parent"
+		        android:layout_weight="1"
+		        android:layout_height="wrap_content"
+		        />
+            <ImageView
+		        android:id="@+id/backpack"
+		        android:src="@drawable/backpack_closed"
+		        android:layout_width="fill_parent"
+		        android:layout_weight="3"
+		        android:layout_height="wrap_content"
+	        />
+        </LinearLayout>
 			    <LinearLayout
 			        android:id="@+id/packeditems_view"
 			        android:layout_width="fill_parent"
@@ -56,15 +77,6 @@
 			        android:background="#ffffff"
 			        >
 			    </LinearLayout>
-			    <ImageView
-			        android:id="@+id/backpack"
-			        android:src="@drawable/backpack"
-			        android:layout_width="fill_parent"
-			        android:layout_height="wrap_content"
-			        android:gravity="center_horizontal"
-			        android:layout_gravity="center_horizontal"
-			        android:layout_marginTop="50dp"
-			        />
 	    </RelativeLayout>
     </ScrollView>
     <RelativeLayout
