@@ -21,6 +21,7 @@ public class TripSQLiteHelper extends SQLiteOpenHelper {
 	public static final String GENDER = "gender";
 	public static final String FROM_DATE = "from_date";
 	public static final String TO_DATE = "to_date";
+	public static final String DATA_TYPE = "data_type";
 	
 	//Trip info database creation sql statement
 	private static final String TRIPINFO_DB_CREATE = "create table " +
@@ -31,7 +32,8 @@ public class TripSQLiteHelper extends SQLiteOpenHelper {
 		    + " text not null, " + GENDER
 		    + " text not null,  " + FROM_DATE
 		    + " text not null, " + TO_DATE
-		    + " text not null);";
+		    + " text not null, " + DATA_TYPE
+		    + " integer);";
 	
 	//trip items table fields
 	public static final String TRIP_ID = "trip_id";

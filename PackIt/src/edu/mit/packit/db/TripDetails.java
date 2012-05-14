@@ -9,6 +9,7 @@ public class TripDetails {
 	private String gender;
 	private String from_date;
 	private String to_date;
+	private int data_type;
 	
 	public long getId() {
 		return id;
@@ -64,5 +65,13 @@ public class TripDetails {
 	
 	public void setToDate(String to_date) {
 		this.to_date = to_date;
+	}
+	
+	public int getDataType() {
+		return data_type;
+	}
+	
+	public void setDataType(int data_type) {
+		this.data_type = data_type;
 	}
 }

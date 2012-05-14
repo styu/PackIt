@@ -26,7 +26,8 @@ public class TripInfoDataSource {
 			TripSQLiteHelper.TRANSPORTATION,
 			TripSQLiteHelper.GENDER,
 			TripSQLiteHelper.FROM_DATE,
-			TripSQLiteHelper.TO_DATE };
+			TripSQLiteHelper.TO_DATE,
+			TripSQLiteHelper.DATA_TYPE};
 	
 	private String[] tripitem_cols = { TripSQLiteHelper.COLUMN_ID,
 			TripSQLiteHelper.TRIP_ID,
@@ -73,6 +74,13 @@ public class TripInfoDataSource {
 //		cursor.close();
 	}
 	
+	public int getTripDataType(String trip_name) {
+		Cursor cursor = database.query(TripSQLiteHelper.TABLE_TRIPINFO, new String[] {TripSQLiteHelper.DATA_TYPE}, TripSQLiteHelper.TRIP_NAME + " = \'" + trip_name +"\'", null, null, null, null);
+		if (cursor.moveToFirst()) {
+			return cursor.getInt(0);
+		}
+		return -1;
+	}
 	public int editTrip(HashMap<String, String> details, ArrayList<ContentValues> items, String trip_name) {
 		long id = deleteTripInfo(trip_name);
 		if (id >= 0) {
@@ -158,7 +166,7 @@ public class TripInfoDataSource {
 			details.setGender(cursor.getString(4));
 			details.setFromDate(cursor.getString(5));
 			details.setToDate(cursor.getString(6));
-			
+			details.setDataType(cursor.getInt(7));
 			return details;
 		}
 		
@@ -171,8 +179,10 @@ public class TripInfoDataSource {
 		details.setTripName(cursor.getString(1));
 		details.setLocation(cursor.getString(2));
 		details.setTransportation(cursor.getString(3));
-		details.setFromDate(cursor.getString(4));
-		details.setToDate(cursor.getString(5));
+		details.setGender(cursor.getString(4));
+		details.setFromDate(cursor.getString(5));
+		details.setToDate(cursor.getString(6));
+		details.setDataType(cursor.getInt(7));
 		return details;
 	}
 	
@@ -216,7 +226,8 @@ public class TripInfoDataSource {
 		if (cursor.moveToFirst()) {
 			long trip_id = cursor.getLong(0);
 			Cursor itemCursor = database.query(TripSQLiteHelper.TABLE_ITEMS, tripitem_cols, TripSQLiteHelper.TRIP_ID + " = " + trip_id, null, null, null, null);
-			Log.i(TAG, ""+itemCursor.moveToFirst());
+//			Log.i(TAG, ""+itemCursor.moveToFirst());
+			itemCursor.moveToFirst();
 			while (!itemCursor.isAfterLast()) {
 				ItemDetails detail = cursorToItem(itemCursor);
 				items.add(detail);

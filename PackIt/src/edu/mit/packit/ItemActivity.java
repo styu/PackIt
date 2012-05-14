@@ -1,25 +1,28 @@
 package edu.mit.packit;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import edu.mit.packit.R;
 import edu.mit.packit.db.ItemDetails;
 import edu.mit.packit.db.TripInfoDataSource;
 import edu.mit.packit.db.TripSQLiteHelper;
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.View.DragShadowBuilder;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Activity that takes care of the editing and removing of items
@@ -30,6 +33,10 @@ public class ItemActivity extends Activity {
 
 	private final static String TAG = "ItemActivity";
 	public static final String EDIT_MODE = "editmode_on";
+	private RelativeLayout packView;
+	private RelativeLayout addView;
+	private ImageView edit_shelf_button;
+	
 	 @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -38,49 +45,42 @@ public class ItemActivity extends Activity {
 	        int type = this.getIntent().getIntExtra(Info.CATEGORY, Info.SHIRTS);
 	        
 	        SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
-	        String trip_name = prefs.getString(TripSQLiteHelper.TRIP_NAME, null);
+	        final String trip_name = prefs.getString(TripSQLiteHelper.TRIP_NAME, null);
 	        
-	        SharedPreferences editToggle = getPreferences(MODE_PRIVATE);
-			SharedPreferences.Editor editor = editToggle.edit();
-			editor.putBoolean(ItemActivity.EDIT_MODE, false);
-			editor.commit();
+//	        SharedPreferences editToggle = getPreferences(MODE_PRIVATE);
+//			SharedPreferences.Editor editor = editToggle.edit();
+//			editor.putBoolean(ItemActivity.EDIT_MODE, false);
+//			editor.commit();
 			
 			TripInfoDataSource.set(getApplicationContext());
 			PackItActivity.datasource.open();
 			
 			setContent(type, trip_name);
-//	        String category_type;
-//	        switch (type) {
-//	        case PackActivity.SHIRTS: category_type="shirts"; break;
-//	        case PackActivity.JACKETS: category_type = "jackets"; break;
-//	        case PackActivity.FORMAL_WEAR: category_type="formal wear"; break;
-//	        case PackActivity.WINTER_GEAR: category_type = "winter gear"; break;
-//	        case PackActivity.PANTS: category_type = "pants"; break;
-//	        case PackActivity.UNDERWEAR: category_type = "underwear"; break;
-//	        case PackActivity.MISC: category_type = "misc"; break;
-//	        default: category_type ="shirts"; break;
-//	        }
+	        Button add_button = (Button) findViewById(R.id.add_item_button);
+	        edit_shelf_button = (ImageView) findViewById(R.id.edit_shelf_button);
 	        
-//	        setContent(type);
-	        
-//	        TextView item_text = (TextView) findViewById(R.id.item_text);
-//	        item_text.setText(category_type);
-//	        
-
-//	        Button add_button = (Button) findViewById(R.id.add_item_button);
-	        final ImageView edit_shelf_button = (ImageView) findViewById(R.id.edit_shelf_button);
-	        
-	        final RelativeLayout packView = (RelativeLayout) findViewById(R.id.pack_view);
-			final RelativeLayout addView = (RelativeLayout) findViewById(R.id.add_view);
-	        
-			View pack_view = (View) findViewById(R.id.pack_view);
-			View add_view = (View) findViewById(R.id.add_view);
-			final ImageView backpack_open = (ImageView) pack_view.findViewById(R.id.backpack);
-			final ImageView backpack_closed = (ImageView) add_view.findViewById(R.id.backpack);
+	        packView = (RelativeLayout) findViewById(R.id.pack_view);
+			addView = (RelativeLayout) findViewById(R.id.add_view);
+			
+			SharedPreferences editToggle = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
+			if (editToggle.getBoolean(ItemActivity.EDIT_MODE, false)) {
+				packView.setVisibility(View.GONE);
+				addView.setVisibility(View.VISIBLE);
+				edit_shelf_button.setImageResource(R.drawable.exit_btn_25x40);
+			}
+			else {
+				addView.setVisibility(View.GONE);
+				packView.setVisibility(View.VISIBLE);
+				edit_shelf_button.setImageResource(R.drawable.edit_btn_48x40);
+			}
+			
+			final ImageView backpack_open = (ImageView) packView.findViewById(R.id.backpack);
+			final ImageView backpack_closed = (ImageView) addView.findViewById(R.id.backpack);
 	        edit_shelf_button.setOnClickListener(new View.OnClickListener() {
 				
 				public void onClick(View v) {
-					SharedPreferences editToggle = getPreferences(MODE_PRIVATE);
+					SharedPreferences editToggle = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
+//					SharedPreferences editToggle = getPreferences(MODE_PRIVATE);
 					SharedPreferences.Editor editor = editToggle.edit();
 					boolean isEditMode = editToggle.getBoolean(ItemActivity.EDIT_MODE, false);
 					if (!isEditMode) {
@@ -139,29 +139,62 @@ public class ItemActivity extends Activity {
 					editor.commit();
 				}
 			});
-//	         add_button.setOnClickListener(new View.OnClickListener() {
-//				
-//				public void onClick(View v) {
-//					View laptop = findViewById(ItemActivity.LAPTOP_ID);
-//					laptop.setVisibility(View.VISIBLE);
-//					EditText text = (EditText) findViewById(R.id.new_item_field);
-//					text.setText("");
-//					text = (EditText) findViewById(R.id.number_item_field);
-//					text.setText("");
-//					
-//					SharedPreferences pref = getSharedPreferences(Items.PACKING_INFO, MODE_PRIVATE);
-//					SharedPreferences.Editor editor = pref.edit();
-//					editor.putBoolean(Items.LAPTOP, true);
-//					editor.commit();
-//				}
-//			});
+	         add_button.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					EditText new_item = (EditText) addView.findViewById(R.id.new_item_field);
+					EditText amount_field = (EditText) addView.findViewById(R.id.number_item_field);
+					
+					int drawable = Info.getNewItem(new_item.getText().toString());
+					
+					if (drawable < 0) {
+						Log.i(TAG, "item not in database or already on shelf");
+						Toast toast = Toast.makeText(v.getContext(), "Item not in database or already on shelf", Toast.LENGTH_SHORT);
+						toast.show();
+					}
+					else {
+						View bring_items_view = (View) findViewById(R.id.bringitems_view);
+						try {
+							int amount = Integer.parseInt(amount_field.getText().toString());
+							RelativeLayout unpacked_item = (RelativeLayout) bring_items_view.findViewById((drawable & Info.ID_CONST) + Info.UNPACKED_ITEMS);
+							String num = PackItActivity.datasource.addItem(trip_name, drawable, amount);
+							if (Integer.parseInt(num) > 0) {
+								if (unpacked_item != null) {
+									unpacked_item.setVisibility(View.VISIBLE);
+									TextView item_text = (TextView) unpacked_item.findViewById(R.id.item_text);
+									item_text.setText(num);
+								}
+								Log.i(TAG, "adding new item");
+								Toast toast = Toast.makeText(v.getContext(), "Item added to " + Info.getCategory(drawable) + " category.", Toast.LENGTH_SHORT);
+								toast.show();
+							}
+						} catch (NumberFormatException e) {
+							Toast toast = Toast.makeText(v.getContext(), "Please enter a valid number", Toast.LENGTH_SHORT);
+							toast.show();
+						}
+						
+					}
+				}
+			});
 	    }
 	 protected void onResume() {
-		 Log.i(TAG, "here");
+//		 Log.i(TAG, "here");
 		PackItActivity.datasource.open();
 		int type = this.getIntent().getIntExtra(Info.CATEGORY, Info.SHIRTS);
 		SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
         String trip_name = prefs.getString(TripSQLiteHelper.TRIP_NAME, null);
+        
+        SharedPreferences editToggle = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
+		if (editToggle.getBoolean(ItemActivity.EDIT_MODE, false)) {
+			packView.setVisibility(View.GONE);
+			addView.setVisibility(View.VISIBLE);
+			edit_shelf_button.setImageResource(R.drawable.exit_btn_25x40);
+		}
+		else {
+			addView.setVisibility(View.GONE);
+			packView.setVisibility(View.VISIBLE);
+			edit_shelf_button.setImageResource(R.drawable.edit_btn_48x40);
+		}
 		setContent(type, trip_name);
 		super.onResume();
 	}
@@ -218,6 +251,18 @@ public class ItemActivity extends Activity {
 								}
 							}
 						});
+					 
+//					 	item.setOnTouchListener(new View.OnTouchListener() {
+//							
+//							public boolean onTouch(View v, MotionEvent event) {
+//								ClipData data = ClipData.newPlainText("", "");
+//								DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(
+//										v);
+//								v.startDrag(data, shadowBuilder, v, 0);
+//								v.setVisibility(View.GONE);
+//								return true;
+//							}
+//						});
 				 }
 				 else {	 
 					item = item_unpacked;
@@ -249,6 +294,7 @@ public class ItemActivity extends Activity {
 							public void onClick(View v) {								
 								RelativeLayout unpacked_item = (RelativeLayout) bring_items_view.findViewById((item_id & Info.ID_CONST) + Info.UNPACKED_ITEMS);
 								String num = PackItActivity.datasource.addItem(trip_name, item_id, 1);
+								Log.i(TAG, num);
 								if (Integer.parseInt(num) > 0 && unpacked_item != null) {
 									unpacked_item.setVisibility(View.VISIBLE);
 									TextView item_text = (TextView) unpacked_item.findViewById(R.id.item_text);

@@ -8,18 +8,21 @@
     >
     
 	<ImageView
-	    		android:layout_marginTop="12dp"
+	    		android:layout_marginTop="9dp"
 		            android:id="@+id/item_image"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
 		            />
 		        <TextView
 		            android:id="@+id/item_text"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
+		            android:layout_width="25dp"
+		            android:layout_height="25dp"
 		            android:layout_toRightOf="@id/item_image"
-		            android:layout_marginTop="42dp"
-		            android:layout_marginLeft="-3dp"
-		            android:textColor="#ff0000"
+		            android:layout_marginTop="35dp"
+		            android:layout_marginLeft="-9dp"
+		            android:textColor="@color/black"
+		            android:textStyle="bold"
+		            android:background="@drawable/itemcounter_circle"
+		            android:gravity="center_horizontal|center_vertical"
 		            />
 </RelativeLayout>

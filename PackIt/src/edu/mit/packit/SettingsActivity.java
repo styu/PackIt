@@ -1,13 +1,8 @@
 package edu.mit.packit;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import edu.mit.packit.SetTripInfoActivity.LoadDataTask;
-import edu.mit.packit.db.ItemDetails;
 import edu.mit.packit.db.TripDetails;
 import edu.mit.packit.db.TripSQLiteHelper;
 import android.app.Activity;
@@ -22,7 +17,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -506,7 +500,13 @@ public class SettingsActivity extends Activity {
         }
 
          public Integer doInBackground(Void... unused) {
-        	Integer rowsEdited = new Integer(PackItActivity.datasource.editTrip(details, Info.getDBEntries(Info.getItemListOne(gender), duration), trip_name));
+        	int data_type = PackItActivity.datasource.getTripDataType(trip_name);
+        	if (data_type == -1) {
+        		int random = (int)( Math.random() * 10);
+        		data_type = (random <= 5) ? 1 : 2;
+        	}
+        	details.put(TripSQLiteHelper.DATA_TYPE, "" + data_type);
+        	Integer rowsEdited = new Integer(PackItActivity.datasource.editTrip(details, Info.getDBEntries(gender, duration, data_type), trip_name));
 			return rowsEdited;
          }
 

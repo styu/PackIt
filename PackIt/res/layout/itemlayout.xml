@@ -40,16 +40,29 @@
 	    android:layout_height="wrap_content"
 	    android:layout_below="@id/shelf_view"
 	    >
-		<ImageView
+        <TextView
+            android:id="@+id/pack_blurb"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Tap items on shelf or drag to packpack to pack.\r\nTap items below shelf to unpack"
+            android:background="@drawable/helptextbackground"
+            android:gravity="center_horizontal"
+            android:padding="2dp"
+            android:layout_alignParentBottom="true"
+            />
+        <ImageView
 		        android:id="@+id/backpack"
 		        android:src="@drawable/backpack_open"
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
 		        android:layout_gravity="center_horizontal"
 		        android:gravity="center_horizontal"
-		        android:layout_alignParentBottom="true"
+		        android:layout_above="@id/pack_blurb"
+		       
 	        />
+        
 	    <HorizontalScrollView
+	        android:id="@+id/pack_scroll_view"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
 	        android:scrollbars="horizontal"
@@ -65,6 +78,8 @@
 	        >
 	    </LinearLayout>
 	    </HorizontalScrollView>
+	
+	
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/add_view"
@@ -73,14 +88,32 @@
 	    android:layout_below="@id/shelf_view"
 	    android:visibility="gone"
         >
-	    <!-- <EditText
+        
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/bubble2_shelf"
+	        android:scaleType="centerInside"
+			android:gravity="center"
+	        >
+            
+            <LinearLayout
+		        android:id="@+id/additems_view"
+		        android:layout_width="wrap_content"
+		        android:layout_height="fill_parent"
+		        android:layout_marginTop="15dp"
+	        >
+	        
+	    	</LinearLayout>
+        </HorizontalScrollView>
+        <EditText
             android:id="@+id/new_item_field"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:imeOptions="actionDone"
             android:inputType="text"
-            android:hint="Need more options?"
+            android:hint="New item"
             android:textSize="13sp"
             android:layout_alignParentBottom="true"
             />
@@ -102,14 +135,14 @@
             android:layout_toRightOf="@id/number_item_field"
             android:text="ADD"
             android:layout_alignParentBottom="true"
-            /> -->
+            />
         <ImageView
 		        android:id="@+id/trashcan"
 		        android:src="@drawable/trashcan"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignParentLeft="true"
-		        android:layout_alignParentBottom="true"
+		        android:layout_above="@id/new_item_field"
 		        />
         <ImageView
 		        android:id="@+id/backpack"
@@ -118,25 +151,7 @@
 		        android:layout_height="wrap_content"
 		        android:layout_gravity="center_horizontal"
 		        android:gravity="center_horizontal"
-		        android:layout_alignParentBottom="true"
+		        android:layout_above="@id/new_item_field"
 	        />
-        <HorizontalScrollView
-            android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:background="@drawable/bubble2_shelf"
-	        android:scaleType="centerInside"
-			android:gravity="center"
-	        >
-            
-            <LinearLayout
-		        android:id="@+id/additems_view"
-		        android:layout_width="wrap_content"
-		        android:layout_height="fill_parent"
-		        android:layout_marginTop="15dp"
-	        >
-	        
-	    	</LinearLayout>
-        </HorizontalScrollView>
-        
     </RelativeLayout>
 </RelativeLayout>

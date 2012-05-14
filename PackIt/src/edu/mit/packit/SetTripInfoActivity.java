@@ -111,6 +111,8 @@ public class SetTripInfoActivity extends Activity {
 				if (isValid) {
 					long duration = Info.getDateDifference(Info.getDate(start_date), Info.getDate(end_date));
 					LoadDataTask task = new LoadDataTask(details, duration, gender);
+					prefs_editor.putBoolean(ItemActivity.EDIT_MODE, false);
+					prefs_editor.commit();
 					task.execute();
 				}
 				else {
@@ -416,7 +418,10 @@ public class SetTripInfoActivity extends Activity {
         }
 
          public Void doInBackground(Void... unused) {
-        	 PackItActivity.datasource.createTrip(details, Info.getDBEntries(Info.getItemListOne(gender), Math.abs(duration)));
+        	 int random = (int)(Math.random()*10);
+				int choice = (random <= 5) ? 1 : 2;
+				details.put(TripSQLiteHelper.DATA_TYPE, ""+choice);
+        	 PackItActivity.datasource.createTrip(details, Info.getDBEntries(gender, Math.abs(duration), choice));
 			return null;
          }
 

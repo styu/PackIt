@@ -70,6 +70,10 @@ public class MainMenuActivity extends ListActivity {
 				EditText trip_field = (EditText) ((Activity) v.getContext()).findViewById(R.id.trip_name_field);
 				String trip_name = trip_field.getText().toString();
 				if (trip_name != null && trip_name.length() > 0) {
+					SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
+			        SharedPreferences.Editor prefs_editor = prefs.edit();
+					prefs_editor.putBoolean(ItemActivity.EDIT_MODE, false);
+					prefs_editor.commit();
 					Intent intent = new Intent(v.getContext(),
 							SetTripInfoActivity.class);
 					intent.putExtra(Info.TRIP_NAME, trip_name);
