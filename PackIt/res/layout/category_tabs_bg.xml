@@ -5,11 +5,11 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/tabsLayout" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:background="@drawable/tab_bg_selector"
+	android:layout_height="fill_parent"
 	android:padding="10dip" android:gravity="center" android:orientation="vertical">
 
-    <TextView android:id="@+id/tabsText" android:layout_width="wrap_content"
+	<TextView android:id="@+id/tabsText" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:text="Title"
+		android:visibility="gone"
 		android:textSize="15dip" android:textColor="@drawable/tab_text_selector" />
-    
 </LinearLayout>

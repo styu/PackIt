@@ -21,6 +21,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SetTripInfoActivity extends Activity {
 
@@ -55,38 +56,67 @@ public class SetTripInfoActivity extends Activity {
 				HashMap<String, String> details = new HashMap<String, String>();
 				details.put(TripSQLiteHelper.TRIP_NAME, trip_name);
 				
+				boolean isValid = true;
+				
 				EditText destination_field = (EditText) ((Activity) v.getContext()).findViewById(R.id.destination_field);
-				details.put(TripSQLiteHelper.LOCATION, destination_field.getText().toString());
+				String destination = destination_field.getText().toString();
+				if (destination != null && destination.length() > 0) {
+					details.put(TripSQLiteHelper.LOCATION, destination);
+				}
+				else {
+					isValid = false;
+				}
 				
 				// TODO add calendar widget to get date
 				
 				EditText from_date = (EditText) ((Activity) v.getContext()).findViewById(R.id.from_date);
 				String start_date = from_date.getText().toString();
-				details.put(TripSQLiteHelper.FROM_DATE, start_date);
+				if (isValid && start_date != null && start_date.length() > 0) {
+					details.put(TripSQLiteHelper.FROM_DATE, start_date);
+				}
+				else {
+					isValid = false;
+				}
 				
 				// TODO add calendar widget to get date
 				
 				EditText to_date = (EditText) ((Activity) v.getContext()).findViewById(R.id.to_date);
 				String end_date = to_date.getText().toString();
-				details.put(TripSQLiteHelper.TO_DATE, end_date);
+				if (isValid && end_date != null && end_date.length() > 0) {
+					details.put(TripSQLiteHelper.TO_DATE, end_date);
+				}
+				else {
+					isValid = false;
+				}
 				
 				String gender = prefs.getString(TripSQLiteHelper.GENDER, "");
-				details.put(TripSQLiteHelper.GENDER, gender);
+				if (isValid && gender != null && gender.length() > 0) {
+					details.put(TripSQLiteHelper.GENDER, gender);
+				}
+				else {
+					isValid = false;
+				}
 				
 				String transportation = prefs.getString(TripSQLiteHelper.TRANSPORTATION, "");
-				details.put(TripSQLiteHelper.TRANSPORTATION, transportation);
 				
-				long duration = Info.getDateDifference(Info.getDate(start_date), Info.getDate(end_date));
-
-				LoadDataTask task = new LoadDataTask(details, duration, gender);
-				task.execute();
-//				PackItActivity.datasource.createTrip(details, Info.getDBEntries(Info.getItemListOne(gender), Math.abs(duration)));
-//				
-//				
-//				Intent intent = new Intent(v.getContext(),
-//							PackActivity.class);
-//				startActivity(intent);
-//				finish();
+				if (isValid && transportation != null && transportation.length() > 0) {
+					details.put(TripSQLiteHelper.TRANSPORTATION, transportation);
+				}
+				else {
+					isValid = false;
+				}
+				
+				
+				
+				if (isValid) {
+					long duration = Info.getDateDifference(Info.getDate(start_date), Info.getDate(end_date));
+					LoadDataTask task = new LoadDataTask(details, duration, gender);
+					task.execute();
+				}
+				else {
+					Toast toast = Toast.makeText(v.getContext(), "Please complete all fields", Toast.LENGTH_SHORT);
+					toast.show();
+				}
 			}
 		});
         back_button.setOnClickListener(new View.OnClickListener() {
