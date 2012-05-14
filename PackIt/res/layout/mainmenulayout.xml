@@ -65,14 +65,7 @@
 	            />
 	</RelativeLayout>
 	<!-- Enter trip name -->
-	  
-	<!-- <RelativeLayout
-	    android:id="@+id/trip_list"
-	    android:layout_height="wrap_content"
-	    android:layout_width="fill_parent"
-	    android:padding="10dp"
-	    >    
-	</RelativeLayout> -->
+
 	<RelativeLayout
 	    android:layout_height="wrap_content"
 	    android:layout_width="fill_parent"

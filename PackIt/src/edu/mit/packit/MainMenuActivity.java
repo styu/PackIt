@@ -3,15 +3,19 @@ package edu.mit.packit;
 import java.util.List;
 
 import edu.mit.packit.db.TripInfoDataSource;
+import edu.mit.packit.db.TripSQLiteHelper;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,30 +34,29 @@ public class MainMenuActivity extends ListActivity {
         setContentView(R.layout.mainmenulayout);
         TripInfoDataSource.set(getApplicationContext());
         PackItActivity.datasource.open();
-        List<String> trips = PackItActivity.datasource.getAllTripNames();
-//        LinearLayout trip_list = (LinearLayout) findViewById(R.id.main_menu);
-//		LayoutInflater vi = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//		int cur_id = 0;
-//        for (String trip_name : trips) {
-//        	LinearLayout cur_trip = (LinearLayout) vi.inflate(R.layout.trip_item, null);
-//        	TextView trip_text = (TextView) cur_trip.findViewById(R.id.trip_name);
-//        	trip_text.setText(trip_name);
-//        	cur_trip.setId(cur_id);
-//        	LinearLayout.LayoutParams q = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
-//                    ViewGroup.LayoutParams.WRAP_CONTENT);
-//        	if (cur_id != 0) {
-//                q.addRule(LinearLayout.BELOW, cur_id - 1);
-//        	}
-//        	cur_trip.setLayoutParams(q);
-//        	cur_id++;
-//        	trip_list.addView(cur_trip);
-//        }
+        final List<String> trips = PackItActivity.datasource.getAllTripNames();
+
         Log.i(TAG, trips.toString());
         setListAdapter(new ArrayAdapter<String>(this, R.layout.trip_item, trips));
         
         ListView lv = getListView();
         lv.setTextFilterEnabled(true);
         
+        lv.setOnItemClickListener(new OnItemClickListener() {
+        	
+        	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg2)
+            { 
+        		String new_trip_name = trips.get(position);
+        		SharedPreferences prefs = getSharedPreferences(TripSQLiteHelper.TABLE_TRIPINFO, MODE_PRIVATE);
+		        SharedPreferences.Editor prefs_editor = prefs.edit();
+		        prefs_editor.putString(TripSQLiteHelper.TRIP_NAME, new_trip_name);
+		        prefs_editor.commit();
+		        
+		        Intent intent = new Intent(arg1.getContext(), PackActivity.class);
+		        startActivity(intent);
+            }
+        	
+		});
         Button continue_button = (Button) findViewById(R.id.continue_button);
         ImageView settings_button = (ImageView) findViewById(R.id.settings_button);
         ImageView pack_button = (ImageView) findViewById(R.id.packing_button);
