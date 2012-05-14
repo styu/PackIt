@@ -8,14 +8,19 @@ import edu.mit.packit.db.TripSQLiteHelper;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class SetTripInfoActivity extends Activity {
 
@@ -26,6 +31,8 @@ public class SetTripInfoActivity extends Activity {
     private int mDay;
     static final int DATE_DIALOG_ID_FROM = 0;
     static final int DATE_DIALOG_ID_TO = 1;
+    
+    private static final String TAG = "SetTripInfoActivity";
     
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,13 +78,15 @@ public class SetTripInfoActivity extends Activity {
 				
 				long duration = Info.getDateDifference(Info.getDate(start_date), Info.getDate(end_date));
 
-				PackItActivity.datasource.createTrip(details, Info.getDBEntries(Info.getItemListOne(gender), Math.abs(duration)));
-				
-				
-				Intent intent = new Intent(v.getContext(),
-							PackActivity.class);
-				startActivity(intent);
-				finish();
+				LoadDataTask task = new LoadDataTask(details, duration, gender);
+				task.execute();
+//				PackItActivity.datasource.createTrip(details, Info.getDBEntries(Info.getItemListOne(gender), Math.abs(duration)));
+//				
+//				
+//				Intent intent = new Intent(v.getContext(),
+//							PackActivity.class);
+//				startActivity(intent);
+//				finish();
 			}
 		});
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -355,4 +364,39 @@ public class SetTripInfoActivity extends Activity {
                     updateDisplay(duration_to);
                 }
             };
+            
+    public class LoadDataTask extends AsyncTask<Void, Void, Void> {
+    	private ProgressDialog dialog;
+    	private long duration;
+    	private HashMap<String, String> details;
+    	private String gender;
+    	
+    	public LoadDataTask(HashMap<String, String> details, long duration, String gender) {
+    		this.duration = duration;
+    		this.details = details;
+    		this.gender = gender;
+        }
+
+    	public void onPreExecute() {
+    		Log.i(TAG, "LoadDataTask onPreExecute");
+            dialog = ProgressDialog.show(SetTripInfoActivity.this, "",
+                    "Loading Data", true);
+            TextView text = (TextView) dialog.findViewById(android.R.id.message);
+            text.setTextColor(Color.WHITE);
+        }
+
+         public Void doInBackground(Void... unused) {
+        	 PackItActivity.datasource.createTrip(details, Info.getDBEntries(Info.getItemListOne(gender), Math.abs(duration)));
+			return null;
+         }
+
+         public void onPostExecute(Void unused) {
+        	 dialog.dismiss();
+        		
+ 			Intent intent = new Intent(SetTripInfoActivity.this,
+ 							PackActivity.class);
+ 				startActivity(intent);
+ 			finish();
+         }
+    }
 }
