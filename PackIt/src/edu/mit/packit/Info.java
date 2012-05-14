@@ -35,6 +35,10 @@ public class Info {
 	public static final int PACKED_INDEX = 1;
 	public static final int UNPACKED_INDEX = 0;
 	
+	public static final int PACKING_TIP = 0;
+	public static final int WEATHER = 1;
+	public static final int REMINDERS = 2;
+	
 	public static final String CATEGORY = "category";
 	public static final String[] CATEGORIES = {
 		"SHIRTS",
