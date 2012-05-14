@@ -27,6 +27,18 @@ public class Info {
 	public static final int TWO_WEEKS = 14;
 	public static final int ONE_MONTH = 28;
 	
+	public static final int PACKED_ITEMS = 0x5d010000;
+	public static final int UNPACKED_ITEMS = 0x5d020000;
+	public static final int ADD_ITEMS = 0x5d030000;
+	public static final int ID_CONST = 0x0000FFFF;
+	
+	public static final int PACKED_INDEX = 1;
+	public static final int UNPACKED_INDEX = 0;
+	
+	public static final int PACKING_TIP = 0;
+	public static final int WEATHER = 1;
+	public static final int REMINDERS = 2;
+	
 	public static final String CATEGORY = "category";
 	public static final String[] CATEGORIES = {
 		"SHIRTS",

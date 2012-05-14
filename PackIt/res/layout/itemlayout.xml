@@ -30,7 +30,6 @@
 	        android:id="@+id/bringitems_view"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        
 	        >
 	    </LinearLayout>
 	    </HorizontalScrollView>
@@ -50,17 +49,23 @@
 	        android:layout_gravity="center_horizontal"
 	        android:layout_alignParentBottom="true"
 	        />
-	    <LinearLayout
-	        android:id="@+id/packeditems_view"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
+	    <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+	        android:scrollbars="horizontal"
+	        android:layout_gravity="center_vertical"
 	        android:layout_above="@id/backpack"
 	        android:layout_below="@id/pack_view"
 	        android:background="#ffffff"
 	        >
+	    <LinearLayout
+	        android:id="@+id/packeditems_view"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        >
 	        
 	    </LinearLayout>
-	    
+	    </HorizontalScrollView>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/add_view"
