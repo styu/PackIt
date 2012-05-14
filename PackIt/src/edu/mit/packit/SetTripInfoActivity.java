@@ -380,7 +380,7 @@ public class SetTripInfoActivity extends Activity {
     	public void onPreExecute() {
     		Log.i(TAG, "LoadDataTask onPreExecute");
             dialog = ProgressDialog.show(SetTripInfoActivity.this, "",
-                    "Loading Data", true);
+                    "Creating trip please wait...", true);
             TextView text = (TextView) dialog.findViewById(android.R.id.message);
             text.setTextColor(Color.WHITE);
         }
